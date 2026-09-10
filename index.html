@@ -3,197 +3,361 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DesignHub — Цифровая образовательная среда</title>
+<title>ДизайнСреда — цифровая образовательная среда</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --bg: #0f1117;
-    --surface: #181b24;
-    --surface-2: #21252f;
-    --border: #2a2f3c;
+    --bg: #f7f8fb;
+    --surface: #ffffff;
+    --surface-2: #f1f3f8;
+    --border: #e5e8f0;
+    --text: #0f1729;
+    --text-dim: #6b7385;
+    --accent: #4f46e5;
+    --accent-soft: #eef0ff;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --shadow-sm: 0 1px 2px rgba(15,23,41,.04), 0 1px 3px rgba(15,23,41,.06);
+    --shadow-md: 0 4px 12px rgba(15,23,41,.08);
+    --shadow-lg: 0 12px 32px rgba(15,23,41,.12);
+  }
+
+  body.dark {
+    --bg: #0d1017;
+    --surface: #151922;
+    --surface-2: #1d2230;
+    --border: #262c3b;
     --text: #e8eaf0;
     --text-dim: #8b93a7;
-    --accent: #6c5ce7;
-    --accent-2: #a29bfe;
-    --success: #00b894;
-    --warning: #fdcb6e;
-    --danger: #ff7675;
+    --accent-soft: #1e1b4b;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
   }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--bg);
     color: var(--text);
-    min-height: 100vh;
     line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* ===== NAVBAR ===== */
-  nav {
+  /* ============ LOGIN ============ */
+  .login-screen {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 32px;
+    background: radial-gradient(circle at 20% 10%, rgba(79,70,229,.08), transparent 50%),
+                radial-gradient(circle at 80% 90%, rgba(79,70,229,.06), transparent 50%);
+  }
+
+  .login-box {
+    width: 100%;
+    max-width: 420px;
     background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 0 32px;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: var(--shadow-lg);
   }
 
-  .logo {
+  .login-logo {
     display: flex;
     align-items: center;
     gap: 10px;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+
+  .logo-mark {
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg, var(--accent), #7c73f0);
+    border-radius: 11px;
+    display: grid;
+    place-items: center;
+    font-size: 19px;
+    color: white;
+  }
+
+  .login-logo-text {
+    font-size: 22px;
     font-weight: 700;
-    font-size: 18px;
+    letter-spacing: -.02em;
+  }
+
+  .login-sub {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 13px;
+    margin-bottom: 32px;
+    line-height: 1.55;
+  }
+
+  .field { margin-bottom: 16px; }
+
+  .field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--text-dim);
+  }
+
+  .field input,
+  .field textarea,
+  .field select {
+    width: 100%;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 14px;
+    color: var(--text);
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: all .15s;
+  }
+
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus {
+    border-color: var(--accent);
+    background: var(--surface);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+
+  .field textarea { resize: vertical; min-height: 90px; }
+
+  .login-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0;
+    color: var(--text-dim);
+    font-size: 12px;
+  }
+
+  .login-divider::before,
+  .login-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .demo-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .login-footer {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 12px;
+    margin-top: 28px;
+  }
+
+  /* ============ APP LAYOUT ============ */
+  .app {
+    display: none;
+    min-height: 100vh;
+  }
+
+  .app.active { display: grid; grid-template-columns: 248px 1fr; }
+
+  /* ============ SIDEBAR ============ */
+  .sidebar {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+
+  .sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 8px 24px;
     cursor: pointer;
   }
 
-  .logo-icon {
-    width: 32px; height: 32px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    border-radius: 8px;
-    display: grid;
-    place-items: center;
-    font-size: 16px;
-  }
+  .sidebar-logo .logo-mark { width: 34px; height: 34px; font-size: 16px; border-radius: 9px; }
+  .sidebar-logo span { font-weight: 700; font-size: 16px; letter-spacing: -.02em; }
 
-  .nav-links {
+  .sidebar-nav { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+
+  .sidebar-nav a {
     display: flex;
-    gap: 4px;
-  }
-
-  .nav-links a {
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 9px;
     color: var(--text-dim);
-    text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 8px;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    transition: all .2s;
+    transition: all .12s;
+    text-decoration: none;
   }
 
-  .nav-links a:hover { color: var(--text); background: var(--surface-2); }
-  .nav-links a.active { color: var(--text); background: var(--surface-2); }
+  .sidebar-nav a:hover { background: var(--surface-2); color: var(--text); }
+  .sidebar-nav a.active { background: var(--accent-soft); color: var(--accent); }
+  body.dark .sidebar-nav a.active { color: #a5b4fc; }
 
-  .avatar {
-    width: 36px; height: 36px;
+  .sidebar-nav .nav-icon { font-size: 16px; width: 20px; text-align: center; }
+
+  .sidebar-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .user-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: background .12s;
+  }
+  .user-mini:hover { background: var(--surface-2); }
+
+  .user-mini .avatar {
+    width: 32px; height: 32px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #6c5ce7, #e84393);
+    background: linear-gradient(135deg, var(--accent), #7c73f0);
+    color: white;
     display: grid;
     place-items: center;
+    font-size: 12px;
     font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
+    flex-shrink: 0;
   }
 
-  /* ===== LAYOUT ===== */
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 32px;
+  .user-mini-info { flex: 1; overflow: hidden; }
+  .user-mini-name { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .user-mini-role { font-size: 11px; color: var(--text-dim); }
+
+  /* ============ MAIN ============ */
+  .main {
+    padding: 32px 40px 80px;
+    max-width: 1280px;
+    width: 100%;
   }
 
   .page { display: none; }
-  .page.active { display: block; animation: fadeIn .3s; }
+  .page.active { display: block; animation: fadeUp .25s ease-out; }
 
-  @keyframes fadeIn {
+  @keyframes fadeUp {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* ===== HERO ===== */
-  .hero {
-    background: linear-gradient(135deg, rgba(108,92,231,.15), rgba(162,155,254,.05));
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 40px;
-    margin-bottom: 40px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -50%; right: -10%;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(108,92,231,.3), transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero h1 {
-    font-size: 32px;
-    font-weight: 700;
-    margin-bottom: 12px;
-    position: relative;
-  }
-
-  .hero p {
-    color: var(--text-dim);
-    font-size: 16px;
-    max-width: 600px;
-    position: relative;
-  }
-
-  /* ===== SECTION HEADER ===== */
-  .section-header {
+  .page-header {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
-    margin-bottom: 24px;
+    gap: 24px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
   }
 
-  .section-header h2 {
-    font-size: 22px;
-    font-weight: 600;
+  .page-header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -.025em;
+    margin-bottom: 4px;
   }
 
-  .section-header p {
+  .page-header p {
     color: var(--text-dim);
     font-size: 14px;
-    margin-top: 4px;
   }
 
-  /* ===== BUTTONS ===== */
+  /* ============ BUTTONS ============ */
   .btn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
+    justify-content: center;
+    gap: 7px;
+    padding: 10px 18px;
     border-radius: 10px;
     border: none;
     font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
+    font-weight: 500;
     font-family: inherit;
-    transition: all .2s;
+    cursor: pointer;
+    transition: all .15s;
+    white-space: nowrap;
   }
 
-  .btn-primary {
-    background: var(--accent);
-    color: white;
-  }
-  .btn-primary:hover { background: #5b4dd1; transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary:hover { background: #4338ca; transform: translateY(-1px); box-shadow: var(--shadow-md); }
 
-  .btn-ghost {
-    background: var(--surface-2);
+  .btn-secondary {
+    background: var(--surface);
     color: var(--text);
     border: 1px solid var(--border);
   }
-  .btn-ghost:hover { background: var(--border); }
+  .btn-secondary:hover { background: var(--surface-2); }
 
-  .btn-sm { padding: 6px 12px; font-size: 13px; }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-dim);
+  }
+  .btn-ghost:hover { background: var(--surface-2); color: var(--text); }
 
-  /* ===== PROJECT CARDS ===== */
+  .btn-sm { padding: 7px 13px; font-size: 13px; border-radius: 8px; }
+  .btn-block { width: 100%; }
+
+  /* ============ STATS ============ */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    transition: all .15s;
+  }
+
+  .stat:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+  .stat-label {
+    color: var(--text-dim);
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  .stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -.03em;
+  }
+
+  /* ============ CARDS ============ */
   .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
   }
 
   .card {
@@ -202,215 +366,159 @@
     border-radius: 16px;
     overflow: hidden;
     cursor: pointer;
-    transition: all .25s;
+    transition: all .2s;
     display: flex;
     flex-direction: column;
+    box-shadow: var(--shadow-sm);
   }
 
   .card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
     border-color: var(--accent);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(108,92,231,.2);
   }
 
   .card-cover {
-    height: 140px;
+    height: 130px;
     display: grid;
     place-items: center;
-    font-size: 44px;
+    font-size: 40px;
     position: relative;
   }
 
-  .card-cover.c1 { background: linear-gradient(135deg, #667eea, #764ba2); }
-  .card-cover.c2 { background: linear-gradient(135deg, #f093fb, #f5576c); }
-  .card-cover.c3 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
-  .card-cover.c4 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+  .cover-1 { background: linear-gradient(135deg, #667eea, #764ba2); }
+  .cover-2 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+  .cover-3 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+  .cover-4 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+  .cover-5 { background: linear-gradient(135deg, #fa709a, #fee140); }
+  .cover-6 { background: linear-gradient(135deg, #30cfd0, #330867); }
 
-  .card-body { padding: 18px; flex: 1; display: flex; flex-direction: column; }
+  .card-body { padding: 16px 18px 18px; flex: 1; display: flex; flex-direction: column; }
 
-  .card-body h3 {
-    font-size: 16px;
+  .card-title {
+    font-size: 15px;
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
+    letter-spacing: -.01em;
   }
 
-  .card-meta {
+  .card-sub {
+    font-size: 12.5px;
     color: var(--text-dim);
-    font-size: 13px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-    padding-top: 14px;
+    margin-bottom: 14px;
   }
 
-  .progress-bar {
-    height: 4px;
+  .card-progress {
+    height: 5px;
     background: var(--surface-2);
-    border-radius: 2px;
+    border-radius: 3px;
     overflow: hidden;
-    margin-top: 14px;
+    margin-bottom: 12px;
   }
 
-  .progress-fill {
+  .card-progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
-    border-radius: 2px;
-    transition: width .4s;
+    background: linear-gradient(90deg, var(--accent), #7c73f0);
+    border-radius: 3px;
+    transition: width .4s ease-out;
   }
 
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    gap: 8px;
+  }
+
+  .card-stage {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  /* ============ BADGES ============ */
   .badge {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-  }
-
-  .badge-progress { background: rgba(253,203,110,.15); color: var(--warning); }
-  .badge-done { background: rgba(0,184,148,.15); color: var(--success); }
-  .badge-new { background: rgba(108,92,231,.15); color: var(--accent-2); }
-
-  /* ===== PROJECT DETAIL ===== */
-  .back-link {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    color: var(--text-dim);
-    font-size: 14px;
-    cursor: pointer;
-    margin-bottom: 24px;
-    transition: color .2s;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 500;
+    white-space: nowrap;
   }
-  .back-link:hover { color: var(--text); }
 
-  .project-header {
+  .badge-progress { background: rgba(245,158,11,.12); color: #b45309; }
+  .badge-review { background: rgba(79,70,229,.12); color: var(--accent); }
+  .badge-done { background: rgba(16,185,129,.12); color: #047857; }
+  .badge-rework { background: rgba(239,68,68,.12); color: #b91c1c; }
+  .badge-new { background: var(--surface-2); color: var(--text-dim); }
+  body.dark .badge-progress { color: #fbbf24; }
+  body.dark .badge-done { color: #34d399; }
+  body.dark .badge-rework { color: #f87171; }
+  body.dark .badge-review { color: #a5b4fc; }
+
+  /* ============ FILTERS ============ */
+  .filter-bar {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 32px;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-
-  .project-header h1 {
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-
-  .project-header .subtitle {
-    color: var(--text-dim);
-    font-size: 15px;
-  }
-
-  .project-layout {
-    display: grid;
-    grid-template-columns: 1fr 340px;
-    gap: 32px;
-    align-items: start;
-  }
-
-  @media (max-width: 900px) {
-    .project-layout { grid-template-columns: 1fr; }
-  }
-
-  /* ===== STAGES ===== */
-  .stages {
-    display: flex;
-    flex-direction: column;
     gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    align-items: center;
   }
 
-  .stage {
+  .tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--surface-2);
+    padding: 4px;
+    border-radius: 10px;
+  }
+
+  .tab {
+    padding: 7px 14px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all .15s;
+    white-space: nowrap;
+  }
+
+  .tab:hover { color: var(--text); }
+  .tab.active {
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .search-input {
+    flex: 1;
+    min-width: 200px;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    cursor: pointer;
-    transition: all .2s;
-    position: relative;
+    border-radius: 10px;
+    padding: 9px 14px;
+    font-size: 13.5px;
+    font-family: inherit;
+    color: var(--text);
+    outline: none;
   }
+  .search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
 
-  .stage:hover { border-color: var(--accent); }
-
-  .stage.current {
-    border-color: var(--accent);
-    background: linear-gradient(90deg, rgba(108,92,231,.1), transparent);
-  }
-
-  .stage.current::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: var(--accent);
-    border-radius: 3px 0 0 3px;
-  }
-
-  .stage-num {
-    width: 44px; height: 44px;
-    border-radius: 12px;
-    display: grid;
-    place-items: center;
-    font-weight: 700;
-    font-size: 15px;
-    background: var(--surface-2);
-    color: var(--text-dim);
-    flex-shrink: 0;
-  }
-
-  .stage.done .stage-num {
-    background: rgba(0,184,148,.15);
-    color: var(--success);
-  }
-
-  .stage.current .stage-num {
-    background: var(--accent);
-    color: white;
-  }
-
-  .stage-info { flex: 1; }
-
-  .stage-info h4 {
-    font-size: 15px;
-    font-weight: 600;
-    margin-bottom: 2px;
-  }
-
-  .stage-info p {
-    font-size: 13px;
-    color: var(--text-dim);
-  }
-
-  .stage-status {
-    font-size: 18px;
-    flex-shrink: 0;
-  }
-
-  /* ===== SIDEBAR ===== */
-  .sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    position: sticky;
-    top: 88px;
-  }
-
+  /* ============ PANELS ============ */
   .panel {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 20px;
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 20px;
   }
 
-  .panel h3 {
-    font-size: 14px;
+  .panel-title {
+    font-size: 15px;
     font-weight: 600;
     margin-bottom: 16px;
     display: flex;
@@ -418,636 +526,1219 @@
     gap: 8px;
   }
 
-  .feedback {
-    background: var(--surface-2);
-    border-radius: 10px;
-    padding: 14px;
-    margin-bottom: 12px;
-    border-left: 3px solid var(--accent);
-  }
+  .panel-title .icon { font-size: 16px; }
 
-  .feedback-head {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-  }
-
-  .feedback-avatar {
-    width: 26px; height: 26px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #e84393, #fd79a8);
+  .two-col {
     display: grid;
-    place-items: center;
-    font-size: 11px;
-    font-weight: 600;
+    grid-template-columns: 1fr 340px;
+    gap: 24px;
+    align-items: start;
   }
 
-  .feedback-author {
-    font-size: 13px;
-    font-weight: 600;
-  }
-
-  .feedback-time {
-    font-size: 11px;
-    color: var(--text-dim);
-  }
-
-  .feedback-text {
-    font-size: 13px;
-    color: var(--text-dim);
-    line-height: 1.5;
-  }
-
-  .comment-box {
-    display: flex;
-    gap: 8px;
-    margin-top: 12px;
-  }
-
-  .comment-box input {
-    flex: 1;
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 8px 12px;
-    color: var(--text);
-    font-size: 13px;
-    font-family: inherit;
-    outline: none;
-  }
-
-  .comment-box input:focus { border-color: var(--accent); }
-
-  .comment-box button {
-    background: var(--accent);
-    border: none;
-    color: white;
-    width: 34px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-
-  /* ===== STATS ===== */
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-bottom: 40px;
+  @media (max-width: 1000px) {
+    .two-col { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 700px) {
-    .stats-row { grid-template-columns: 1fr; }
+    .app.active { grid-template-columns: 1fr; }
+    .sidebar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: auto;
+      height: auto;
+      flex-direction: row;
+      padding: 8px;
+      border-right: none;
+      border-top: 1px solid var(--border);
+      z-index: 100;
+      overflow-x: auto;
+    }
+    .sidebar-logo, .sidebar-bottom { display: none; }
+    .sidebar-nav { flex-direction: row; gap: 4px; }
+    .sidebar-nav a { padding: 10px 14px; font-size: 12px; flex-direction: column; gap: 4px; }
+    .sidebar-nav a span:not(.nav-icon) { font-size: 10px; }
+    .main { padding: 20px 16px 100px; }
+    .stats-grid { grid-template-columns: 1fr; }
   }
 
-  .stat-card {
+  /* ============ BACK LINK ============ */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-dim);
+    font-size: 13.5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: color .15s;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  /* ============ PROJECT DETAIL HEADER ============ */
+  .project-hero {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .project-hero-cover {
+    height: 160px;
+    display: grid;
+    place-items: center;
+    font-size: 60px;
+    position: relative;
+  }
+
+  .project-hero-body {
+    padding: 24px 28px;
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .project-hero-body h1 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -.025em;
+    margin-bottom: 6px;
+  }
+
+  .project-hero-body p {
+    color: var(--text-dim);
+    font-size: 14px;
+    max-width: 560px;
+  }
+
+  .project-progress-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    min-width: 200px;
+  }
+
+  .progress-ring {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: conic-gradient(var(--accent) calc(var(--p) * 1%), var(--surface-2) 0);
+    position: relative;
+  }
+
+  .progress-ring::after {
+    content: '';
+    position: absolute;
+    inset: 7px;
+    border-radius: 50%;
+    background: var(--surface);
+  }
+
+  .progress-ring span {
+    position: relative;
+    z-index: 1;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  /* ============ TABS INSIDE PROJECT ============ */
+  .inner-tabs {
+    display: flex;
+    gap: 2px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+    overflow-x: auto;
+  }
+
+  .inner-tab {
+    padding: 12px 16px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--text-dim);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all .15s;
+    white-space: nowrap;
+  }
+
+  .inner-tab:hover { color: var(--text); }
+  .inner-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* ============ STAGES ============ */
+  .stages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .stage-item {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 14px;
-    padding: 20px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: all .15s;
+    position: relative;
+    box-shadow: var(--shadow-sm);
   }
 
-  .stat-value {
-    font-size: 28px;
-    font-weight: 700;
-    background: linear-gradient(135deg, var(--accent-2), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .stage-item:hover { border-color: var(--accent); transform: translateX(2px); }
+
+  .stage-item.current {
+    border-color: var(--accent);
+    background: linear-gradient(90deg, var(--accent-soft), var(--surface) 60%);
   }
 
-  .stat-label {
+  .stage-item.current::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 12px; bottom: 12px;
+    width: 3px;
+    background: var(--accent);
+    border-radius: 0 3px 3px 0;
+  }
+
+  .stage-num {
+    width: 40px; height: 40px;
+    border-radius: 11px;
+    display: grid;
+    place-items: center;
+    font-weight: 600;
+    font-size: 14px;
+    background: var(--surface-2);
     color: var(--text-dim);
-    font-size: 13px;
-    margin-top: 4px;
+    flex-shrink: 0;
   }
 
-  /* ===== CREATE FORM ===== */
-  .form-panel {
+  .stage-item.done .stage-num { background: rgba(16,185,129,.14); color: var(--success); }
+  .stage-item.current .stage-num { background: var(--accent); color: white; }
+
+  .stage-info { flex: 1; min-width: 0; }
+  .stage-info h4 { font-size: 14.5px; font-weight: 600; margin-bottom: 2px; }
+  .stage-info p { font-size: 12.5px; color: var(--text-dim); }
+
+  .stage-status { font-size: 16px; color: var(--text-dim); flex-shrink: 0; }
+  .stage-item.done .stage-status { color: var(--success); }
+  .stage-item.current .stage-status { color: var(--accent); }
+
+  /* ============ STAGE DETAIL ============ */
+  .stage-detail-header {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 32px;
-    max-width: 640px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-sm);
   }
 
-  .form-group { margin-bottom: 24px; }
-
-  .form-group label {
-    display: block;
-    font-size: 14px;
-    font-weight: 600;
+  .stage-detail-header .stage-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+    color: var(--text-dim);
     margin-bottom: 8px;
   }
 
-  .form-group input,
-  .form-group textarea,
-  .form-group select {
-    width: 100%;
+  .stage-detail-header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    margin-bottom: 10px;
+  }
+
+  .stage-detail-header p {
+    color: var(--text-dim);
+    font-size: 14px;
+    max-width: 640px;
+  }
+
+  .task-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .task-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    padding: 12px 14px;
+    background: var(--surface-2);
+    border-radius: 10px;
+    transition: background .15s;
+  }
+
+  .task-list li:hover { background: var(--accent-soft); }
+
+  .task-check {
+    width: 20px; height: 20px;
+    border-radius: 6px;
+    border: 1.5px solid var(--border);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    cursor: pointer;
+    font-size: 12px;
+    color: transparent;
+    transition: all .15s;
+    background: var(--surface);
+  }
+
+  .task-list li.done .task-check {
+    background: var(--success);
+    border-color: var(--success);
+    color: white;
+  }
+
+  .task-list li.done span:last-child { text-decoration: line-through; color: var(--text-dim); }
+
+  .tip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+
+  .tip {
+    background: var(--accent-soft);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  body.dark .tip { background: rgba(79,70,229,.15); }
+
+  .tip-title { font-weight: 600; margin-bottom: 4px; font-size: 13px; }
+
+  /* ============ MATERIALS ============ */
+  .material-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .material-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    background: var(--surface-2);
+    border-radius: 10px;
+    transition: all .15s;
+    cursor: pointer;
+  }
+
+  .material-row:hover { background: var(--accent-soft); }
+
+  .material-icon {
+    width: 36px; height: 36px;
+    border-radius: 9px;
+    background: var(--surface);
+    display: grid;
+    place-items: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .material-info { flex: 1; min-width: 0; }
+  .material-info .name { font-size: 13.5px; font-weight: 500; }
+  .material-info .meta { font-size: 11.5px; color: var(--text-dim); margin-top: 2px; }
+
+  /* ============ REFERENCE BOARD ============ */
+  .ref-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .ref-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: all .2s;
+  }
+
+  .ref-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+  .ref-img {
+    height: 150px;
+    display: grid;
+    place-items: center;
+    font-size: 36px;
+  }
+
+  .ref-body { padding: 12px 14px; }
+  .ref-body h4 { font-size: 13.5px; font-weight: 600; margin-bottom: 4px; }
+  .ref-body p { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+
+  /* ============ FEEDBACK / CHAT ============ */
+  .chat {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .msg {
+    display: flex;
+    gap: 12px;
+    max-width: 85%;
+  }
+
+  .msg.me { align-self: flex-end; flex-direction: row-reverse; }
+
+  .msg-avatar {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .msg-avatar.teacher { background: linear-gradient(135deg, #e84393, #fd79a8); }
+  .msg-avatar.student { background: linear-gradient(135deg, var(--accent), #7c73f0); }
+
+  .msg-bubble {
+    background: var(--surface-2);
+    border-radius: 14px;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+
+  .msg.me .msg-bubble { background: var(--accent); color: white; }
+
+  .msg-meta {
+    font-size: 11.5px;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .msg.me .msg-meta { text-align: right; }
+
+  .chat-input {
+    display: flex;
+    gap: 10px;
+  }
+
+  .chat-input input {
+    flex: 1;
     background: var(--surface-2);
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 12px 16px;
-    color: var(--text);
+    padding: 11px 16px;
     font-size: 14px;
     font-family: inherit;
+    color: var(--text);
     outline: none;
-    transition: border .2s;
+  }
+  .chat-input input:focus { border-color: var(--accent); }
+
+  /* ============ EVALUATION ============ */
+  .eval-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
   }
 
-  .form-group input:focus,
-  .form-group textarea:focus,
-  .form-group select:focus {
-    border-color: var(--accent);
+  .eval-table th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+    text-transform: uppercase;
+    letter-spacing: .04em;
   }
 
-  .form-group textarea {
-    resize: vertical;
-    min-height: 100px;
+  .eval-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
   }
 
+  .eval-table tr:last-child td { border-bottom: none; }
+
+  .score {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .score-bar {
+    display: inline-block;
+    width: 80px;
+    height: 6px;
+    background: var(--surface-2);
+    border-radius: 3px;
+    overflow: hidden;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+
+  .score-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), #7c73f0);
+  }
+
+  .eval-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--accent-soft);
+    padding: 20px 24px;
+    border-radius: 14px;
+    margin-top: 20px;
+  }
+  body.dark .eval-total { background: rgba(79,70,229,.15); }
+
+  .eval-total-label { font-size: 14px; font-weight: 500; }
+  .eval-total-value { font-size: 26px; font-weight: 700; letter-spacing: -.03em; color: var(--accent); }
+
+  /* ============ PORTFOLIO ============ */
+  .portfolio-hero {
+    background: linear-gradient(135deg, var(--accent-soft), var(--surface));
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 40px;
+    margin-bottom: 32px;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  body.dark .portfolio-hero { background: linear-gradient(135deg, rgba(79,70,229,.15), var(--surface)); }
+
+  .portfolio-avatar {
+    width: 88px; height: 88px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #7c73f0);
+    display: grid;
+    place-items: center;
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .portfolio-hero h1 { font-size: 26px; font-weight: 700; letter-spacing: -.025em; margin-bottom: 6px; }
+  .portfolio-hero p { color: var(--text-dim); font-size: 14px; }
+
+  /* ============ PROFILE ============ */
+  .profile-header {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .profile-avatar {
+    width: 88px; height: 88px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #7c73f0);
+    display: grid;
+    place-items: center;
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+  }
+
+  .profile-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+  .profile-header p { color: var(--text-dim); font-size: 14px; }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 14px;
+  }
+
+  .info-item {
+    background: var(--surface-2);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+
+  .info-item .label { font-size: 12px; color: var(--text-dim); margin-bottom: 4px; }
+  .info-item .value { font-size: 14px; font-weight: 500; }
+
+  /* ============ TABLE ============ */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .data-table th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .data-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .data-table tbody tr { cursor: pointer; transition: background .12s; }
+  .data-table tbody tr:hover { background: var(--surface-2); }
+
+  /* ============ TOAST ============ */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translate(-50%, 100px);
+    background: var(--text);
+    color: var(--bg);
+    padding: 12px 22px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0;
+    transition: all .3s cubic-bezier(.4,0,.2,1);
+    z-index: 9999;
+    box-shadow: var(--shadow-lg);
+    pointer-events: none;
+    max-width: 90vw;
+  }
+
+  .toast.show { transform: translate(-50%, 0); opacity: 1; }
+
+  /* ============ TASK CARD (dashboard) ============ */
+  .task-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+
+  .task-row:last-child { border-bottom: none; }
+
+  .task-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .task-row .task-text { flex: 1; }
+  .task-row .task-due { font-size: 12.5px; color: var(--text-dim); }
+  .task-row .task-due.soon { color: var(--warning); font-weight: 500; }
+
+  /* ============ FEEDBACK PREVIEW ============ */
+  .feedback-preview {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin-bottom: 12px;
+  }
+  body.dark .feedback-preview { background: rgba(79,70,229,.15); }
+
+  .feedback-preview-author {
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* ============ CHIPS ============ */
   .chip-row { display: flex; gap: 8px; flex-wrap: wrap; }
 
   .chip {
     padding: 8px 16px;
     border-radius: 20px;
     background: var(--surface-2);
-    border: 1px solid var(--border);
+    border: 1px solid transparent;
     font-size: 13px;
     cursor: pointer;
-    transition: all .2s;
+    transition: all .15s;
     user-select: none;
+    font-weight: 500;
   }
+
+  .chip:hover { background: var(--border); }
 
   .chip.selected {
-    background: rgba(108,92,231,.2);
+    background: var(--accent-soft);
     border-color: var(--accent);
-    color: var(--accent-2);
+    color: var(--accent);
+  }
+  body.dark .chip.selected { color: #a5b4fc; }
+
+  /* ============ FORM ============ */
+  .form-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 680px;
+    box-shadow: var(--shadow-sm);
   }
 
-  /* ===== TOAST ===== */
-  .toast {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    background: var(--surface-2);
-    border: 1px solid var(--accent);
-    border-radius: 12px;
-    padding: 14px 20px;
-    font-size: 14px;
-    transform: translateY(100px);
-    opacity: 0;
-    transition: all .3s;
-    z-index: 1000;
-    box-shadow: 0 8px 24px rgba(0,0,0,.4);
-  }
-
-  .toast.show { transform: translateY(0); opacity: 1; }
-
-  /* ===== PROGRESS CIRCLE ===== */
-  .progress-circle-wrap {
-    display: flex;
-    align-items: center;
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 16px;
   }
 
-  .progress-circle {
-    width: 56px; height: 56px;
-    border-radius: 50%;
-    background: conic-gradient(var(--accent) var(--p, 0%), var(--surface-2) 0);
-    display: grid;
-    place-items: center;
-    position: relative;
-    flex-shrink: 0;
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+
+  /* ============ EMPTY STATE ============ */
+  .empty {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--text-dim);
+    font-size: 14px;
   }
 
-  .progress-circle::after {
-    content: '';
-    position: absolute;
-    inset: 6px;
-    border-radius: 50%;
+  .empty-icon { font-size: 40px; margin-bottom: 12px; opacity: .5; }
+
+  /* ============ REVIEW PANEL ============ */
+  .review-panel {
     background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    position: sticky;
+    top: 24px;
+    box-shadow: var(--shadow-sm);
   }
 
-  .progress-circle span {
-    position: relative;
-    z-index: 1;
-    font-size: 13px;
-    font-weight: 700;
+  .status-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 20px;
   }
+
+  .status-opt {
+    padding: 10px 14px;
+    border-radius: 9px;
+    font-size: 13.5px;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    transition: all .15s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .status-opt:hover { background: var(--surface-2); }
+  .status-opt.selected {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent);
+    font-weight: 500;
+  }
+  body.dark .status-opt.selected { color: #a5b4fc; }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+  ::-webkit-scrollbar-track { background: transparent; }
 </style>
 </head>
 <body>
 
-<!-- ===== NAVBAR ===== -->
-<nav>
-  <div class="logo" onclick="showPage('home')">
-    <div class="logo-icon">◆</div>
-    <span>DesignHub</span>
+<!-- ================= LOGIN ================= -->
+<div class="login-screen" id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="logo-mark">◆</div>
+      <div class="login-logo-text">ДизайнСреда</div>
+    </div>
+    <p class="login-sub">Цифровая образовательная среда для дизайн-проектной деятельности студентов</p>
+
+    <div class="field">
+      <label>Email</label>
+      <input type="email" id="login-email" placeholder="student@demo.ru">
+    </div>
+    <div class="field">
+      <label>Пароль</label>
+      <input type="password" id="login-pass" placeholder="••••••••">
+    </div>
+
+    <button class="btn btn-primary btn-block" onclick="login()" style="margin-top:8px;">Войти</button>
+
+    <div class="login-divider">Демо-вход</div>
+
+    <div class="demo-buttons">
+      <button class="btn btn-secondary" onclick="demoLogin('student')">🎓 Студент</button>
+      <button class="btn btn-secondary" onclick="demoLogin('teacher')">👨‍🏫 Преподаватель</button>
+    </div>
+
+    <div class="login-footer">Цифровая образовательная среда университета</div>
   </div>
-  <div class="nav-links">
-    <a onclick="showPage('home')" data-nav="home" class="active">Главная</a>
-    <a onclick="showPage('projects')" data-nav="projects">Мои проекты</a>
-    <a onclick="showPage('create')" data-nav="create">Создать проект</a>
-  </div>
-  <div class="avatar">АС</div>
-</nav>
-
-<div class="container">
-
-  <!-- ===== PAGE: HOME ===== -->
-  <div class="page active" id="page-home">
-    <div class="hero">
-      <h1>Привет, Анна 👋</h1>
-      <p>Добро пожаловать в цифровую образовательную среду. Здесь ты ведёшь свои дизайн-проекты, отслеживаешь этапы и получаешь обратную связь от преподавателей.</p>
-    </div>
-
-    <div class="stats-row">
-      <div class="stat-card">
-        <div class="stat-value">4</div>
-        <div class="stat-label">Активных проекта</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">2</div>
-        <div class="stat-label">Завершено этапов</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">3</div>
-        <div class="stat-label">Комментария от преподавателя</div>
-      </div>
-    </div>
-
-    <div class="section-header">
-      <div>
-        <h2>Мои проекты</h2>
-        <p>Продолжи работу с последнего этапа</p>
-      </div>
-      <button class="btn btn-primary" onclick="showPage('create')">+ Новый проект</button>
-    </div>
-
-    <div class="cards-grid" id="home-cards"></div>
-  </div>
-
-  <!-- ===== PAGE: PROJECTS ===== -->
-  <div class="page" id="page-projects">
-    <div class="section-header">
-      <div>
-        <h2>Все проекты</h2>
-        <p>4 проекта в работе</p>
-      </div>
-      <button class="btn btn-primary" onclick="showPage('create')">+ Новый проект</button>
-    </div>
-    <div class="cards-grid" id="all-cards"></div>
-  </div>
-
-  <!-- ===== PAGE: CREATE ===== -->
-  <div class="page" id="page-create">
-    <div class="section-header">
-      <div>
-        <h2>Создать проект</h2>
-        <p>Заполни информацию о новом учебном дизайн-проекте</p>
-      </div>
-    </div>
-
-    <div class="form-panel">
-      <div class="form-group">
-        <label>Название проекта</label>
-        <input type="text" id="new-title" placeholder="Например: Редизайн сайта университета">
-      </div>
-
-      <div class="form-group">
-        <label>Описание</label>
-        <textarea id="new-desc" placeholder="Кратко опиши цель и задачи проекта..."></textarea>
-      </div>
-
-      <div class="form-group">
-        <label>Тип проекта</label>
-        <div class="chip-row" id="type-chips">
-          <div class="chip" data-type="web">Веб-дизайн</div>
-          <div class="chip" data-type="brand">Фирменный стиль</div>
-          <div class="chip" data-type="mobile">Мобильное приложение</div>
-          <div class="chip" data-type="poster">Плакат / графика</div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Дедлайн</label>
-        <input type="date" id="new-deadline">
-      </div>
-
-      <button class="btn btn-primary" onclick="createProject()">Создать проект →</button>
-    </div>
-  </div>
-
-  <!-- ===== PAGE: PROJECT DETAIL ===== -->
-  <div class="page" id="page-project">
-    <div class="back-link" onclick="showPage('projects')">← Назад к проектам</div>
-
-    <div class="project-header">
-      <div>
-        <h1 id="detail-title">Редизайн сайта университета</h1>
-        <div class="subtitle" id="detail-subtitle">Веб-дизайн · Дедлайн: 15 декабря</div>
-      </div>
-      <div class="progress-circle-wrap">
-        <div class="progress-circle" id="detail-circle" style="--p: 40%">
-          <span id="detail-percent">40%</span>
-        </div>
-        <div>
-          <div style="font-size:14px; font-weight:600;">Прогресс проекта</div>
-          <div style="font-size:13px; color:var(--text-dim);" id="detail-steps">2 из 5 этапов</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-layout">
-      <!-- STAGES -->
-      <div>
-        <h3 style="font-size:16px; margin-bottom:16px;">Этапы проекта</h3>
-        <div class="stages" id="stages-list"></div>
-      </div>
-
-      <!-- SIDEBAR -->
-      <div class="sidebar">
-        <div class="panel">
-          <h3>💬 Обратная связь</h3>
-          <div id="feedback-list">
-            <div class="feedback">
-              <div class="feedback-head">
-                <div class="feedback-avatar">ПИ</div>
-                <div>
-                  <div class="feedback-author">Преподаватель Иванова</div>
-                  <div class="feedback-time">2 часа назад</div>
-                </div>
-              </div>
-              <div class="feedback-text">Попробуйте проработать ещё 2 варианта главной страницы — текущий выглядит слишком стандартно.</div>
-            </div>
-            <div class="feedback">
-              <div class="feedback-head">
-                <div class="feedback-avatar">ПИ</div>
-                <div>
-                  <div class="feedback-author">Преподаватель Иванова</div>
-                  <div class="feedback-time">Вчера</div>
-                </div>
-              </div>
-              <div class="feedback-text">Отличная работа с исследованием! Концепция принята, можно переходить к прототипу.</div>
-            </div>
-          </div>
-          <div class="comment-box">
-            <input type="text" id="new-comment" placeholder="Написать комментарий...">
-            <button onclick="addComment()">➤</button>
-          </div>
-        </div>
-
-        <div class="panel">
-          <h3>📎 Материалы</h3>
-          <div style="font-size:13px; color:var(--text-dim); line-height:1.8;">
-            • Мудборд.fig<br>
-            • Анализ конкурентов.pdf<br>
-            • Прототип v1.fig
-          </div>
-          <button class="btn btn-ghost btn-sm" style="margin-top:12px; width:100%; justify-content:center;">+ Загрузить файл</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </div>
 
-<div class="toast" id="toast">Готово!</div>
+<!-- ================= APP ================= -->
+<div class="app" id="app">
 
-<script>
-/* ===== DATA ===== */
-const defaultStages = [
-  { name: 'Исследование', desc: 'Анализ, сбор материала, интервью' },
-  { name: 'Концепция', desc: 'Идея, мудборд, направление' },
-  { name: 'Прототип', desc: 'Wireframes, структура, UX' },
-  { name: 'Визуальный дизайн', desc: 'UI-кит, макеты, анимации' },
-  { name: 'Презентация', desc: 'Защита проекта, подача' }
-];
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo" onclick="nav('dashboard')">
+      <div class="logo-mark">◆</div>
+      <span>ДизайнСреда</span>
+    </div>
 
-let projects = [
-  {
-    id: 1,
-    title: 'Редизайн сайта университета',
-    type: 'Веб-дизайн',
-    icon: '🌐',
-    cover: 'c1',
-    deadline: '15 декабря',
-    currentStage: 2, // 0-indexed: 3-й этап (Прототип)
-    stages: JSON.parse(JSON.stringify(defaultStages)),
-    feedback: [
-      { author: 'Преподаватель Иванова', text: 'Попробуйте проработать ещё 2 варианта главной страницы — текущий выглядит слишком стандартно.', time: '2 часа назад', initials: 'ПИ' },
-      { author: 'Преподаватель Иванова', text: 'Отличная работа с исследованием! Концепция принята, можно переходить к прототипу.', time: 'Вчера', initials: 'ПИ' }
-    ]
-  },
-  {
-    id: 2,
-    title: 'Фирменный стиль кофейни',
-    type: 'Фирменный стиль',
-    icon: '☕',
-    cover: 'c2',
-    deadline: '20 декабря',
-    currentStage: 0,
-    stages: JSON.parse(JSON.stringify(defaultStages)),
-    feedback: []
-  },
-  {
-    id: 3,
-    title: 'Мобильное приложение',
-    type: 'Мобильное приложение',
-    icon: '📱',
-    cover: 'c3',
-    deadline: '10 января',
-    currentStage: 3,
-    stages: JSON.parse(JSON.stringify(defaultStages)),
-    feedback: []
-  },
-  {
-    id: 4,
-    title: 'Социальный плакат',
-    type: 'Плакат / графика',
-    icon: '🎨',
-    cover: 'c4',
-    deadline: '5 января',
-    currentStage: 1,
-    stages: JSON.parse(JSON.stringify(defaultStages)),
-    feedback: []
-  }
-];
+    <nav class="sidebar-nav" id="sidebar-nav"></nav>
 
-let currentProjectId = null;
+    <div class="sidebar-bottom">
+      <div class="user-mini" onclick="nav('profile')">
+        <div class="avatar" id="user-avatar">ЭС</div>
+        <div class="user-mini-info">
+          <div class="user-mini-name" id="user-name">Эльнур Сафаров</div>
+          <div class="user-mini-role" id="user-role">Студент</div>
+        </div>
+      </div>
+      <a onclick="nav('settings')" style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:9px;color:var(--text-dim);font-size:14px;cursor:pointer;">
+        <span style="width:20px;text-align:center;">⚙</span> Настройки
+      </a>
+      <a onclick="logout()" style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:9px;color:var(--text-dim);font-size:14px;cursor:pointer;">
+        <span style="width:20px;text-align:center;">⏻</span> Выйти
+      </a>
+    </div>
+  </aside>
 
-/* ===== RENDER CARDS ===== */
-function renderCards() {
-  const html = projects.map(p => {
-    const done = p.currentStage;
-    const total = p.stages.length;
-    const percent = Math.round((done / total) * 100);
-    let badge = '';
-    if (percent === 100) badge = '<span class="badge badge-done">Завершён</span>';
-    else if (percent === 0) badge = '<span class="badge badge-new">Новый</span>';
-    else badge = '<span class="badge badge-progress">В работе</span>';
+  <!-- MAIN -->
+  <main class="main">
 
-    return `
-      <div class="card" onclick="openProject(${p.id})">
-        <div class="card-cover ${p.cover}">${p.icon}</div>
-        <div class="card-body">
-          <h3>${p.title}</h3>
-          <div style="font-size:13px; color:var(--text-dim); margin-bottom:8px;">${p.type}</div>
-          <div class="progress-bar"><div class="progress-fill" style="width:${percent}%"></div></div>
-          <div class="card-meta">
-            ${badge}
-            <span>${done}/${total} этапов</span>
+    <!-- ============ STUDENT: DASHBOARD ============ -->
+    <div class="page" id="page-dashboard">
+      <div class="page-header">
+        <div>
+          <h1 id="greeting">Добрый день, Эльнур</h1>
+          <p>Продолжите работу над своими проектами</p>
+        </div>
+        <button class="btn btn-primary" onclick="nav('create-project')">+ Новый проект</button>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat"><div class="stat-label">Активные проекты</div><div class="stat-value">3</div></div>
+        <div class="stat"><div class="stat-label">Завершено</div><div class="stat-value">5</div></div>
+        <div class="stat"><div class="stat-label">На проверке</div><div class="stat-value">1</div></div>
+        <div class="stat"><div class="stat-label">Комментариев</div><div class="stat-value">7</div></div>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <h2 style="font-size:17px;font-weight:600;margin-bottom:16px;">Мои проекты</h2>
+          <div class="cards-grid" id="dash-cards"></div>
+        </div>
+
+        <div>
+          <div class="panel">
+            <div class="panel-title"><span class="icon">📌</span> Ближайшие задачи</div>
+            <div class="task-row">
+              <div class="task-dot"></div>
+              <div class="task-text">Завершить анализ конкурентов</div>
+              <div class="task-due soon">Сегодня</div>
+            </div>
+            <div class="task-row">
+              <div class="task-dot" style="background:var(--warning);"></div>
+              <div class="task-text">Загрузить wireframe</div>
+              <div class="task-due">Завтра</div>
+            </div>
+            <div class="task-row">
+              <div class="task-dot" style="background:var(--text-dim);"></div>
+              <div class="task-text">Отправить концепцию на проверку</div>
+              <div class="task-due">15 сентября</div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title"><span class="icon">💬</span> Обратная связь</div>
+            <div class="feedback-preview">
+              <div class="feedback-preview-author">👩‍🏫 Преподаватель Иванова</div>
+              «Хорошо проработана структура. Попробуйте сделать ещё один вариант главного экрана.»
+            </div>
+            <button class="btn btn-secondary btn-sm btn-block" onclick="openProject(1)">Открыть проект</button>
           </div>
         </div>
       </div>
-    `;
-  }).join('');
-
-  document.getElementById('home-cards').innerHTML = html;
-  document.getElementById('all-cards').innerHTML = html;
-}
-
-/* ===== OPEN PROJECT ===== */
-function openProject(id) {
-  currentProjectId = id;
-  const p = projects.find(x => x.id === id);
-  if (!p) return;
-
-  document.getElementById('detail-title').textContent = p.title;
-  document.getElementById('detail-subtitle').textContent = `${p.type} · Дедлайн: ${p.deadline}`;
-
-  const total = p.stages.length;
-  const percent = Math.round((p.currentStage / total) * 100);
-  document.getElementById('detail-circle').style.setProperty('--p', percent + '%');
-  document.getElementById('detail-percent').textContent = percent + '%';
-  document.getElementById('detail-steps').textContent = `${p.currentStage} из ${total} этапов`;
-
-  // stages
-  const stagesHtml = p.stages.map((s, i) => {
-    let cls = '';
-    let status = '';
-    if (i < p.currentStage) { cls = 'done'; status = '✓'; }
-    else if (i === p.currentStage) { cls = 'current'; status = '→'; }
-    else { status = '○'; }
-
-    return `
-      <div class="stage ${cls}" onclick="advanceStage(${p.id}, ${i})">
-        <div class="stage-num">${String(i+1).padStart(2,'0')}</div>
-        <div class="stage-info">
-          <h4>${s.name}</h4>
-          <p>${s.desc}</p>
-        </div>
-        <div class="stage-status">${status}</div>
-      </div>
-    `;
-  }).join('');
-  document.getElementById('stages-list').innerHTML = stagesHtml;
-
-  // feedback
-  renderFeedback(p);
-
-  showPage('project');
-}
-
-function renderFeedback(p) {
-  const el = document.getElementById('feedback-list');
-  if (!p.feedback || p.feedback.length === 0) {
-    el.innerHTML = '<div style="font-size:13px; color:var(--text-dim); padding:8px 0;">Пока нет комментариев</div>';
-    return;
-  }
-  el.innerHTML = p.feedback.map(f => `
-    <div class="feedback">
-      <div class="feedback-head">
-        <div class="feedback-avatar">${f.initials || 'П'}</div>
-        <div>
-          <div class="feedback-author">${f.author}</div>
-          <div class="feedback-time">${f.time}</div>
-        </div>
-      </div>
-      <div class="feedback-text">${f.text}</div>
     </div>
-  `).join('');
-}
 
-/* ===== ADVANCE STAGE ===== */
-function advanceStage(projectId, stageIndex) {
-  const p = projects.find(x => x.id === projectId);
-  if (!p) return;
+    <!-- ============ STUDENT: PROJECTS ============ -->
+    <div class="page" id="page-projects">
+      <div class="page-header">
+        <div>
+          <h1>Мои проекты</h1>
+          <p>Все ваши дизайн-проекты в одном месте</p>
+        </div>
+        <button class="btn btn-primary" onclick="nav('create-project')">+ Новый проект</button>
+      </div>
 
-  if (stageIndex < p.currentStage) {
-    toast('Этот этап уже завершён ✓');
-    return;
-  }
-  if (stageIndex > p.currentStage) {
-    toast('Сначала завершите текущий этап');
-    return;
-  }
+      <div class="filter-bar">
+        <div class="tabs" id="projects-tabs">
+          <div class="tab active" data-filter="all" onclick="setProjectFilter('all', this)">Все</div>
+          <div class="tab" data-filter="progress" onclick="setProjectFilter('progress', this)">В работе</div>
+          <div class="tab" data-filter="review" onclick="setProjectFilter('review', this)">На проверке</div>
+          <div class="tab" data-filter="done" onclick="setProjectFilter('done', this)">Завершённые</div>
+        </div>
+        <input class="search-input" placeholder="🔍 Поиск по названию..." oninput="searchProjects(this.value)">
+      </div>
 
-  if (p.currentStage < p.stages.length) {
-    p.currentStage++;
-    toast(`Этап «${p.stages[stageIndex].name}» завершён ✓`);
-    renderCards();
-    openProject(projectId);
-  } else {
-    toast('Все этапы уже завершены!');
-  }
-}
+      <div class="cards-grid" id="projects-cards"></div>
+    </div>
 
-/* ===== ADD COMMENT ===== */
-function addComment() {
-  const input = document.getElementById('new-comment');
-  const text = input.value.trim();
-  if (!text) return;
+    <!-- ============ STUDENT: CREATE PROJECT ============ -->
+    <div class="page" id="page-create-project">
+      <div class="back-link" onclick="nav('projects')">← Назад к проектам</div>
+      <div class="page-header">
+        <div>
+          <h1>Создание нового проекта</h1>
+          <p>Заполните информацию о учебном дизайн-проекте</p>
+        </div>
+      </div>
 
-  const p = projects.find(x => x.id === currentProjectId);
-  if (!p) return;
+      <div class="form-panel">
+        <div class="field">
+          <label>Название проекта</label>
+          <input type="text" id="np-title" placeholder="Например: Редизайн сайта университета">
+        </div>
 
-  p.feedback.unshift({
-    author: 'Анна Смирнова (вы)',
-    text: text,
-    time: 'только что',
-    initials: 'АС'
-  });
-  input.value = '';
-  renderFeedback(p);
-  toast('Комментарий добавлен');
-}
+        <div class="field">
+          <label>Тип проекта</label>
+          <div class="chip-row" id="np-types">
+            <div class="chip" data-type="Веб-дизайн" data-icon="🌐" data-cover="cover-1">Веб-дизайн</div>
+            <div class="chip" data-type="Графический дизайн" data-icon="🎨" data-cover="cover-2">Графический дизайн</div>
+            <div class="chip" data-type="UI/UX" data-icon="📱" data-cover="cover-3">UI/UX</div>
+            <div class="chip" data-type="Мобильное приложение" data-icon="📲" data-cover="cover-4">Мобильное приложение</div>
+            <div class="chip" data-type="Брендинг" data-icon="☕" data-cover="cover-5">Брендинг</div>
+            <div class="chip" data-type="Иллюстрация" data-icon="✏️" data-cover="cover-6">Иллюстрация</div>
+          </div>
+        </div>
 
-/* ===== CREATE PROJECT ===== */
-let selectedType = null;
-document.querySelectorAll('#type-chips .chip').forEach(chip => {
-  chip.addEventListener('click', () => {
-    document.querySelectorAll('#type-chips .chip').forEach(c => c.classList.remove('selected'));
-    chip.classList.add('selected');
-    selectedType = chip.dataset.type;
-  });
-});
+        <div class="field">
+          <label>Краткое описание</label>
+          <textarea id="np-desc" placeholder="О чём проект и какова его основная идея..."></textarea>
+        </div>
 
-const typeMap = {
-  web: { label: 'Веб-дизайн', icon: '🌐', cover: 'c1' },
-  brand: { label: 'Фирменный стиль', icon: '☕', cover: 'c2' },
-  mobile: { label: 'Мобильное приложение', icon: '📱', cover: 'c3' },
-  poster: { label: 'Плакат / графика', icon: '🎨', cover: 'c4' }
-};
+        <div class="field">
+          <label>Цель проекта</label>
+          <textarea id="np-goal" placeholder="Что должно быть достигнуто в результате..."></textarea>
+        </div>
 
-function createProject() {
-  const title = document.getElementById('new-title').value.trim();
-  const desc = document.getElementById('new-desc').value.trim();
-  const deadline = document.getElementById('new-deadline').value;
+        <div class="field">
+          <label>Целевая аудитория</label>
+          <input type="text" id="np-audience" placeholder="Например: абитуриенты и студенты 17–25 лет">
+        </div>
 
-  if (!title) { toast('Введите название проекта'); return; }
-  if (!selectedType) { toast('Выберите тип проекта'); return; }
+        <div class="form-row">
+          <div class="field">
+            <label>Дедлайн</label>
+            <input type="date" id="np-deadline">
+          </div>
+          <div class="field">
+            <label>Обложка проекта</label>
+            <input type="file" style="padding:9px;">
+          </div>
+        </div>
 
-  const t = typeMap[selectedType];
-  const newProject = {
-    id: Date.now(),
-    title: title,
-    type: t.label,
-    icon: t.icon,
-    cover: t.cover,
-    deadline: deadline ? new Date(deadline).toLocaleDateString('ru-RU', { day:'numeric', month:'long' }) : 'без дедлайна',
-    currentStage: 0,
-    stages: JSON.parse(JSON.stringify(defaultStages)),
-   
+        <button class="btn btn-primary" onclick="createProject()" style="margin-top:8px;">Создать проект →</button>
+      </div>
+    </div>
+
+    <!-- ============ STUDENT: PROJECT DETAIL ============ -->
+    <div class="page" id="page-project">
+      <div class="back-link" onclick="nav('projects')">← Назад к проектам</div>
+
+      <div class="project-hero">
+        <div class="project-hero-cover" id="ph-cover">🌐</div>
+        <div class="project-hero-body">
+          <div>
+            <h1 id="ph-title">Редизайн сайта университета</h1>
+            <p id="ph-desc">Проект по разработке современной структуры и визуального оформления сайта университета.</p>
+            <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+              <span class="badge badge-progress" id="ph-status">В работе</span>
+              <span style="font-size:13px;color:var(--text-dim);" id="ph-deadline">Дедлайн: 15 декабря</span>
+            </div>
+          </div>
+          <div class="project-progress-block">
+            <div class="progress-ring" id="ph-ring" style="--p:68"><span id="ph-percent">68%</span></div>
+            <div style="font-size:12.5px;color:var(--text-dim);" id="ph-steps">5 из 7 этапов</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="inner-tabs">
+        <div class="inner-tab active" data-ptab="overview" onclick="switchProjectTab('overview', this)">Обзор</div>
+        <div class="inner-tab" data-ptab="stages" onclick="switchProjectTab('stages', this)">Этапы</div>
+        <div class="inner-tab" data-ptab="materials" onclick="switchProjectTab('materials', this)">Материалы</div>
+        <div class="inner-tab" data-ptab="references" onclick="switchProjectTab('references', this)">Референсы</div>
+        <div class="inner-tab" data-ptab="feedback" onclick="switchProjectTab('feedback', this)">Обратная связь</div>
+        <div class="inner-tab" data-ptab="evaluation" onclick="switchProjectTab('evaluation', this)">Оценивание</div>
+        <div class="inner-tab" data-ptab="portfolio" onclick="switchProjectTab('portfolio', this)">Портфолио</div>
+      </div>
+
+      <div class="project-tab-body" id="project-tab-body"></div>
+    </div>
+
+    <!-- ============ STUDENT: PORTFOLIO ============ -->
+    <div class="page" id="page-portfolio">
+      <div class="portfolio-hero">
+        <div class="portfolio-avatar">ЭС</div>
+        <div>
+          <h1>Эльнур Сафаров</h1>
+          <p>Студент направления «Дизайн». Веб-дизайн и UI/UX. Группа Д-21.</p>
+        </div>
+      </div>
+
+      <h2 style="font-size:17px;font-weight:600;margin-bottom:16px;">Работы</h2>
+      <div class="cards-grid" id="portfolio-cards"></div>
+    </div>
+
+    <!-- ============ STUDENT: PROFILE ============ -->
+    <div class="page" id="page-profile">
+      <div class="profile-header">
+        <div class="profile-avatar" id="profile-avatar">ЭС</div>
+        <div>
+          <h1 id="profile-name">Эльнур Сафаров</h1>
+          <p id="profile-role">Студент · Группа Д-21 · Дизайн</p>
+        </div>
+        <button class="btn btn-secondary" style="margin-left:auto;">Редактировать профиль</button>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Контактная информация</div>
+        <div class="info-grid">
+          <div class="info-item"><div class="label">Email</div><div class="value">student@demo.ru</div></div>
+          <div class="info-item"><div class="label">Направление</div><div class="value">Дизайн</div></div>
+          <div class="info-item"><div class="label">Группа</div><div class="value">Д-21</div></div>
+          <div class="info-item"><div class="label">Курс</div><div class="value">4</div></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Статистика</div>
+        <div class="stats-grid" style="margin-bottom:0;">
+          <div class="stat"><div class="stat-label">Всего проектов</div><div class="stat-value">8</div></div>
+          <div class="stat"><div class="stat-label">Завершено</div><div class="stat-value">5</div></div>
+          <div class="stat"><div class="stat-label">В работе</div><div class="stat-value">3</div></div>
+          <div class="stat"><div class="stat-label">Средний балл</div><div class="stat-value">4.6</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ STUDENT: MATERIALS ============ -->
+    <div class="page" id="page-materials">
+      <div class="page-header">
+        <div>
+          <h1>Методические материалы</h1>
+          <p>Библиотека образовательных материалов для дизайн-проектов</p>
+        </div>
+      </div>
+      <div id="materials-library"></div>
+    </div>
+
+    <!-- ============ STUDENT: SETTINGS ============ -->
+    <div class="page" id="page-settings">
+      <div class="page-header"><div><h1>Настройки</h1><p>Управление профилем и интерфейсом</p></div></div>
+
+      <div class="panel">
+        <div class="panel-title">Интерфейс</div>
+        <div style="display:flex;gap:12px;align-items:center;">
+          <button class="btn btn-secondary" onclick="toggleTheme()">🌓 Переключить тёмную / светлую тему</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Уведомления</div>
+        <div class="task-row"><div class="task-dot"></div><div class="task-text">Новые комментарии преподавателя</div><span class="badge badge-review">Вкл</span></div>
+        <div class="task-row"><div class="task-dot"></div><div class="task-text">Новые задания</div><span class="badge badge-review">Вкл</span></div>
+        <div class="task-row"><div class="task-dot"></div><div class="task-text">Изменение статуса проекта</div><span class="badge badge-review">Вкл</span></div>
+        <div class="task-row"><div class="task-dot"></div><div class="task-text">Результаты оценивания</div><span class="badge badge-review">Вкл</span></div>
+      </div>
+    </div>
+
+    <!-- ============ TEACHER: DASHBOARD ============ -->
+    <div class="page" id="page-teacher-dashboard">
+      <div class="page-header">
+        <div>
+          <h1>Панель преподавателя</h1>
+          <p>Обзор активности студентов и проектов, требующих проверки</p>
+        </div>
+        <button class="btn btn-primary" onclick="nav('teacher-task-new')">+ Создать задание</button>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat"><div class="stat-label">Студентов</div><div class="stat-value">24</div></div>
+        <div class="stat"><div class="stat-label">Активных проектов</div><div class="stat-value">18</div></div>
+        <div class="stat"><div class="stat-label">На проверке</div><div class="stat-value">7</div></div>
+        <div class="stat"><div class="stat-label">Завершено</div><div class="stat-value">12</div></div>
+      </div>
+
+      <h2 style="font-size:17px;font-weight:600;margin-bottom:16px;">Проекты, требующие проверки</h2>
+      <div class="cards-grid" id="teacher-review-cards"></div>
+    </div>
+
+    <!-- ============ TEACHER: STUDENTS ============ -->
+    <div class="page" id="page-teacher-students">
+      <div class="page-header"><div><h1>Студенты</h1><p>Список студентов и их проектная активность</p></div></div>
+
+      <div class="panel" style="padding:0;overflow:hidden;">
+        <table class="data-table">
+          <thead>
+            <tr><th>Студент</th><th>Группа</th><th>Проекты</th><th>Прогресс</th><th>Статус</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>Иван Иванов</b></td><td>Д-21</td><td>3</td><td>75%</td><td><span class="badge badge-progress">В работе</span></td></tr>
+            <tr><td><b>Анна Петрова</b></td><td>Д-21</td><td>2</td><td>90%</td><td><span class="badge badge-review">На проверке</span></td></tr>
+            <tr><td><b>Эльнур Сафаров</b></td><td>Д-21</td><td>4</td><td>68%</td><td><span class="badge badge-progress">В работе</span></td></tr>
+            <tr><td><b>Мария Ким</b></td><td>Д-22</td><td>2</td><td>100%</td><td><span class="badge badge-done">Завершён</span></td></tr>
+            <tr><td><b>Дмитрий Волков</b></td><td>Д-22</td><td>1</td><td>40%</td><td><span class="badge badge-rework">Доработка</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============ TEACHER: PROJECTS ============ -->
+    <div class="page" id="page-teacher-projects">
+      <div class="page-header"><div><h1>Проекты студентов</h1><p>Все проекты, доступные для проверки</p></div></div>
+
+      <div class="filter-bar">
+        <div class="tabs">
+          <div class="tab active">Все</div>
+          <div class="tab">На проверке</div>
+          <div class="tab">В работе</div>
+          <div class="tab">Завершённые</div>
+        </div>
+        <input class="search-input" placeholder="🔍 Поиск по проекту или студенту...">
+      </div>
+
+      <div class="cards-grid" id="teacher-projects-cards"></div>
+    </div>
+
+    <!-- ============ TEACHER: REVIEW PROJECT ============ -->
+    <div class="page" id="page-teacher-review">
+      <div class="back-link" onclick="nav('teacher-projects')">← Назад к проектам</div>
+
+      <div class="project-hero">
+        <div class="project-hero-cover cover-1">🌐</div>
+        <div class="project-hero-body">
+          <div>
+            <h1>Редизайн сайта университета</h1>
+            <p>Студент: <b>Иван Иванов</b> · Группа Д-21 · Этап «Прототипирование»</p>
+            <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+              <span class="badge badge-review">Ожидает проверки</span>
+              <span style="font-size:13px;color:var(--text-dim);">Отправлено 12 сентября</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <div class="panel">
+            <div class="panel-title">Цель проекта</div>
+            <p style="font-size:14px;color:var(--text-dim);line-height:1.6;">Разработать современную структуру и визуальное оформление сайта университета, улучшив навигацию для абитуриентов и студентов.</p>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title">Загруженные материалы этапа</div>
+            <div class="material-list">
+              <div class="material-row"><div class="material-icon">🖼</div><div class="material-info"><div class="name">Wireframe v2.png</div><div class="meta">PNG · 2.4 MB · 12 сентября</div></div></div>
+              <div class="material-row"><div class="material-icon">🔗</div><div class="material-info"><div class="name">Figma — прототип главной</div><div class="meta">Ссылка · figma.com/file/...</div></div></div>
+              <div class="material-row"><div class="material-icon">📄</div><div class="material-info"><div class="name">Сценарий пользователя.pdf</div><div class="meta">PDF · 680 KB</div></div></div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title">Комментарий студента</div>
+            <p style="font-size:14px;color:var(--text-dim);line-height:1.6;">Реализовал структуру главной страницы и внутренних разделов. Настроил базовые переходы в прототипе. Не успел проработать мобильную версию.</p>
+          </div>
+        </div>
+
+        <div class="review-panel">
+          <div class="panel-title">Проверка проекта</div>
+
+          <label style="font-size:13px;font-weight:500;display:block;margin-bottom:8px;color:var(--text-dim);">Статус</label>
+          <div class="status-options">
+            <div class="status-opt selected" onclick="selectStatus(this)">⏳ На проверке</div>
+            <div class="status-opt" onclick="selectStatus(this)">🔴 Требуется доработка</div>
+            <div class="status-opt" onclick="selectStatus(this)">🟢 Принято</div>
+            <div class="status-opt" onclick="selectStatus(this)">✅ Завершено</div>
+          </div>
+
+          <label style="font-size:13px;font-weight:500;display:block;margin-bottom:8px;color:var(--text-dim);">Комментарий</label>
+          <textarea id="review-comment" placeholder="Напишите замечания и рекомендации..." style="width:100%;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:11px 14px;font-family:inherit;font-size:13.5px;color:var(--text);outline:none;min-height:120px;resize:vertical;margin-bottom:20px;"></textarea>
+
+          <label style="font-size:13px;font-weight:500;display:block;margin-bottom:10px;color:var(--text-dim);">Оценка по критериям</label>
+          <div id="review-scores" style="margin-bottom:20px;"></div>
+
+          <button class="btn btn-primary btn-block" onclick="toast('Оценивание сохранено ✓')">Сохранить оценивание</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ TEACHER: TASKS ============ -->
+    <div class="page" id="page-teacher-tasks">
+      <div class="page-header">
+        <div><h1>Задания</h1><p>Учебные задания для студентов</p></div>
+        <button class="btn btn-primary" onclick="nav('teacher-task-new')">+ Создать задание</button>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-cover cover-1" style="font-size:36px;">🌐</div>
+          <div class="card-body">
+            <h3 class="card-title">Разработка лендинга</h3>
+            <p class="card-sub">Веб-дизайн · 18 студентов</p>
+            <div class="card-footer">
+              <span class="badge badge-progress">Активно</span>
+              <span style="font-size:12px;color:var(--text-dim);">до 30 сентября</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-cover cover-5" style="font-size:36px;">☕</div>
+          <div class="card-body">
+            <h3 class="card-title">Фирменный стиль кофейни</h3>
+            <p class="card-sub">Брендинг · 14 студентов</p>
+            <div class="card-footer">
+              <span class="badge badge-progress">Активно</span>
+              <span style="font-size:12px;color:var(--text-dim);">до 15 октября</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-cover cover-6" style="font-size:36px;">🎨</div>
+          <div class="card-body">
+            <h3 class="card-title">Социальный плакат</h3>
+            <p class="card-sub">Графический дизайн · 22 студента</p>
+            <div class="card-footer">
+              <span class="badge badge-done">Завершено
