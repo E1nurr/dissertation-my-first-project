@@ -1,12 +1,1053 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <link rel="stylesheet" href="css/style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DesignHub — Цифровая образовательная среда</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0f1117;
+    --surface: #181b24;
+    --surface-2: #21252f;
+    --border: #2a2f3c;
+    --text: #e8eaf0;
+    --text-dim: #8b93a7;
+    --accent: #6c5ce7;
+    --accent-2: #a29bfe;
+    --success: #00b894;
+    --warning: #fdcb6e;
+    --danger: #ff7675;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+
+  /* ===== NAVBAR ===== */
+  nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  .logo-icon {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 4px;
+  }
+
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .2s;
+  }
+
+  .nav-links a:hover { color: var(--text); background: var(--surface-2); }
+  .nav-links a.active { color: var(--text); background: var(--surface-2); }
+
+  .avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6c5ce7, #e84393);
+    display: grid;
+    place-items: center;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  /* ===== LAYOUT ===== */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 32px;
+  }
+
+  .page { display: none; }
+  .page.active { display: block; animation: fadeIn .3s; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, rgba(108,92,231,.15), rgba(162,155,254,.05));
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -10%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(108,92,231,.3), transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .hero p {
+    color: var(--text-dim);
+    font-size: 16px;
+    max-width: 600px;
+    position: relative;
+  }
+
+  /* ===== SECTION HEADER ===== */
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  .section-header h2 {
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  .section-header p {
+    color: var(--text-dim);
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  /* ===== BUTTONS ===== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all .2s;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+  .btn-primary:hover { background: #5b4dd1; transform: translateY(-1px); }
+
+  .btn-ghost {
+    background: var(--surface-2);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { background: var(--border); }
+
+  .btn-sm { padding: 6px 12px; font-size: 13px; }
+
+  /* ===== PROJECT CARDS ===== */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all .25s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(108,92,231,.2);
+  }
+
+  .card-cover {
+    height: 140px;
+    display: grid;
+    place-items: center;
+    font-size: 44px;
+    position: relative;
+  }
+
+  .card-cover.c1 { background: linear-gradient(135deg, #667eea, #764ba2); }
+  .card-cover.c2 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+  .card-cover.c3 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+  .card-cover.c4 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+
+  .card-body { padding: 18px; flex: 1; display: flex; flex-direction: column; }
+
+  .card-body h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .card-meta {
+    color: var(--text-dim);
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 14px;
+  }
+
+  .progress-bar {
+    height: 4px;
+    background: var(--surface-2);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 14px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    border-radius: 2px;
+    transition: width .4s;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+
+  .badge-progress { background: rgba(253,203,110,.15); color: var(--warning); }
+  .badge-done { background: rgba(0,184,148,.15); color: var(--success); }
+  .badge-new { background: rgba(108,92,231,.15); color: var(--accent-2); }
+
+  /* ===== PROJECT DETAIL ===== */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-dim);
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 24px;
+    transition: color .2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .project-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .project-header .subtitle {
+    color: var(--text-dim);
+    font-size: 15px;
+  }
+
+  .project-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 32px;
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .project-layout { grid-template-columns: 1fr; }
+  }
+
+  /* ===== STAGES ===== */
+  .stages {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .stage {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    cursor: pointer;
+    transition: all .2s;
+    position: relative;
+  }
+
+  .stage:hover { border-color: var(--accent); }
+
+  .stage.current {
+    border-color: var(--accent);
+    background: linear-gradient(90deg, rgba(108,92,231,.1), transparent);
+  }
+
+  .stage.current::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    border-radius: 3px 0 0 3px;
+  }
+
+  .stage-num {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: 15px;
+    background: var(--surface-2);
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  .stage.done .stage-num {
+    background: rgba(0,184,148,.15);
+    color: var(--success);
+  }
+
+  .stage.current .stage-num {
+    background: var(--accent);
+    color: white;
+  }
+
+  .stage-info { flex: 1; }
+
+  .stage-info h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .stage-info p {
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .stage-status {
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  /* ===== SIDEBAR ===== */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: sticky;
+    top: 88px;
+  }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+  }
+
+  .panel h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .feedback {
+    background: var(--surface-2);
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 12px;
+    border-left: 3px solid var(--accent);
+  }
+
+  .feedback-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .feedback-avatar {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e84393, #fd79a8);
+    display: grid;
+    place-items: center;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .feedback-author {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .feedback-time {
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  .feedback-text {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  .comment-box {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .comment-box input {
+    flex: 1;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: var(--text);
+    font-size: 13px;
+    font-family: inherit;
+    outline: none;
+  }
+
+  .comment-box input:focus { border-color: var(--accent); }
+
+  .comment-box button {
+    background: var(--accent);
+    border: none;
+    color: white;
+    width: 34px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  /* ===== STATS ===== */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: 700px) {
+    .stats-row { grid-template-columns: 1fr; }
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+  }
+
+  .stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-2), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat-label {
+    color: var(--text-dim);
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  /* ===== CREATE FORM ===== */
+  .form-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 640px;
+  }
+
+  .form-group { margin-bottom: 24px; }
+
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: var(--text);
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border .2s;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--accent);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .chip-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .chip {
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all .2s;
+    user-select: none;
+  }
+
+  .chip.selected {
+    background: rgba(108,92,231,.2);
+    border-color: var(--accent);
+    color: var(--accent-2);
+  }
+
+  /* ===== TOAST ===== */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--surface-2);
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    padding: 14px 20px;
+    font-size: 14px;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all .3s;
+    z-index: 1000;
+    box-shadow: 0 8px 24px rgba(0,0,0,.4);
+  }
+
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ===== PROGRESS CIRCLE ===== */
+  .progress-circle-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .progress-circle {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: conic-gradient(var(--accent) var(--p, 0%), var(--surface-2) 0);
+    display: grid;
+    place-items: center;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .progress-circle::after {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    background: var(--surface);
+  }
+
+  .progress-circle span {
+    position: relative;
+    z-index: 1;
+    font-size: 13px;
+    font-weight: 700;
+  }
+</style>
 </head>
 <body>
-    <h1>Привет, это мой сайт!</h1>
-</body>
-</html>
+
+<!-- ===== NAVBAR ===== -->
+<nav>
+  <div class="logo" onclick="showPage('home')">
+    <div class="logo-icon">◆</div>
+    <span>DesignHub</span>
+  </div>
+  <div class="nav-links">
+    <a onclick="showPage('home')" data-nav="home" class="active">Главная</a>
+    <a onclick="showPage('projects')" data-nav="projects">Мои проекты</a>
+    <a onclick="showPage('create')" data-nav="create">Создать проект</a>
+  </div>
+  <div class="avatar">АС</div>
+</nav>
+
+<div class="container">
+
+  <!-- ===== PAGE: HOME ===== -->
+  <div class="page active" id="page-home">
+    <div class="hero">
+      <h1>Привет, Анна 👋</h1>
+      <p>Добро пожаловать в цифровую образовательную среду. Здесь ты ведёшь свои дизайн-проекты, отслеживаешь этапы и получаешь обратную связь от преподавателей.</p>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-value">4</div>
+        <div class="stat-label">Активных проекта</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">2</div>
+        <div class="stat-label">Завершено этапов</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">3</div>
+        <div class="stat-label">Комментария от преподавателя</div>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <div>
+        <h2>Мои проекты</h2>
+        <p>Продолжи работу с последнего этапа</p>
+      </div>
+      <button class="btn btn-primary" onclick="showPage('create')">+ Новый проект</button>
+    </div>
+
+    <div class="cards-grid" id="home-cards"></div>
+  </div>
+
+  <!-- ===== PAGE: PROJECTS ===== -->
+  <div class="page" id="page-projects">
+    <div class="section-header">
+      <div>
+        <h2>Все проекты</h2>
+        <p>4 проекта в работе</p>
+      </div>
+      <button class="btn btn-primary" onclick="showPage('create')">+ Новый проект</button>
+    </div>
+    <div class="cards-grid" id="all-cards"></div>
+  </div>
+
+  <!-- ===== PAGE: CREATE ===== -->
+  <div class="page" id="page-create">
+    <div class="section-header">
+      <div>
+        <h2>Создать проект</h2>
+        <p>Заполни информацию о новом учебном дизайн-проекте</p>
+      </div>
+    </div>
+
+    <div class="form-panel">
+      <div class="form-group">
+        <label>Название проекта</label>
+        <input type="text" id="new-title" placeholder="Например: Редизайн сайта университета">
+      </div>
+
+      <div class="form-group">
+        <label>Описание</label>
+        <textarea id="new-desc" placeholder="Кратко опиши цель и задачи проекта..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Тип проекта</label>
+        <div class="chip-row" id="type-chips">
+          <div class="chip" data-type="web">Веб-дизайн</div>
+          <div class="chip" data-type="brand">Фирменный стиль</div>
+          <div class="chip" data-type="mobile">Мобильное приложение</div>
+          <div class="chip" data-type="poster">Плакат / графика</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Дедлайн</label>
+        <input type="date" id="new-deadline">
+      </div>
+
+      <button class="btn btn-primary" onclick="createProject()">Создать проект →</button>
+    </div>
+  </div>
+
+  <!-- ===== PAGE: PROJECT DETAIL ===== -->
+  <div class="page" id="page-project">
+    <div class="back-link" onclick="showPage('projects')">← Назад к проектам</div>
+
+    <div class="project-header">
+      <div>
+        <h1 id="detail-title">Редизайн сайта университета</h1>
+        <div class="subtitle" id="detail-subtitle">Веб-дизайн · Дедлайн: 15 декабря</div>
+      </div>
+      <div class="progress-circle-wrap">
+        <div class="progress-circle" id="detail-circle" style="--p: 40%">
+          <span id="detail-percent">40%</span>
+        </div>
+        <div>
+          <div style="font-size:14px; font-weight:600;">Прогресс проекта</div>
+          <div style="font-size:13px; color:var(--text-dim);" id="detail-steps">2 из 5 этапов</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-layout">
+      <!-- STAGES -->
+      <div>
+        <h3 style="font-size:16px; margin-bottom:16px;">Этапы проекта</h3>
+        <div class="stages" id="stages-list"></div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+        <div class="panel">
+          <h3>💬 Обратная связь</h3>
+          <div id="feedback-list">
+            <div class="feedback">
+              <div class="feedback-head">
+                <div class="feedback-avatar">ПИ</div>
+                <div>
+                  <div class="feedback-author">Преподаватель Иванова</div>
+                  <div class="feedback-time">2 часа назад</div>
+                </div>
+              </div>
+              <div class="feedback-text">Попробуйте проработать ещё 2 варианта главной страницы — текущий выглядит слишком стандартно.</div>
+            </div>
+            <div class="feedback">
+              <div class="feedback-head">
+                <div class="feedback-avatar">ПИ</div>
+                <div>
+                  <div class="feedback-author">Преподаватель Иванова</div>
+                  <div class="feedback-time">Вчера</div>
+                </div>
+              </div>
+              <div class="feedback-text">Отличная работа с исследованием! Концепция принята, можно переходить к прототипу.</div>
+            </div>
+          </div>
+          <div class="comment-box">
+            <input type="text" id="new-comment" placeholder="Написать комментарий...">
+            <button onclick="addComment()">➤</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>📎 Материалы</h3>
+          <div style="font-size:13px; color:var(--text-dim); line-height:1.8;">
+            • Мудборд.fig<br>
+            • Анализ конкурентов.pdf<br>
+            • Прототип v1.fig
+          </div>
+          <button class="btn btn-ghost btn-sm" style="margin-top:12px; width:100%; justify-content:center;">+ Загрузить файл</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast">Готово!</div>
+
+<script>
+/* ===== DATA ===== */
+const defaultStages = [
+  { name: 'Исследование', desc: 'Анализ, сбор материала, интервью' },
+  { name: 'Концепция', desc: 'Идея, мудборд, направление' },
+  { name: 'Прототип', desc: 'Wireframes, структура, UX' },
+  { name: 'Визуальный дизайн', desc: 'UI-кит, макеты, анимации' },
+  { name: 'Презентация', desc: 'Защита проекта, подача' }
+];
+
+let projects = [
+  {
+    id: 1,
+    title: 'Редизайн сайта университета',
+    type: 'Веб-дизайн',
+    icon: '🌐',
+    cover: 'c1',
+    deadline: '15 декабря',
+    currentStage: 2, // 0-indexed: 3-й этап (Прототип)
+    stages: JSON.parse(JSON.stringify(defaultStages)),
+    feedback: [
+      { author: 'Преподаватель Иванова', text: 'Попробуйте проработать ещё 2 варианта главной страницы — текущий выглядит слишком стандартно.', time: '2 часа назад', initials: 'ПИ' },
+      { author: 'Преподаватель Иванова', text: 'Отличная работа с исследованием! Концепция принята, можно переходить к прототипу.', time: 'Вчера', initials: 'ПИ' }
+    ]
+  },
+  {
+    id: 2,
+    title: 'Фирменный стиль кофейни',
+    type: 'Фирменный стиль',
+    icon: '☕',
+    cover: 'c2',
+    deadline: '20 декабря',
+    currentStage: 0,
+    stages: JSON.parse(JSON.stringify(defaultStages)),
+    feedback: []
+  },
+  {
+    id: 3,
+    title: 'Мобильное приложение',
+    type: 'Мобильное приложение',
+    icon: '📱',
+    cover: 'c3',
+    deadline: '10 января',
+    currentStage: 3,
+    stages: JSON.parse(JSON.stringify(defaultStages)),
+    feedback: []
+  },
+  {
+    id: 4,
+    title: 'Социальный плакат',
+    type: 'Плакат / графика',
+    icon: '🎨',
+    cover: 'c4',
+    deadline: '5 января',
+    currentStage: 1,
+    stages: JSON.parse(JSON.stringify(defaultStages)),
+    feedback: []
+  }
+];
+
+let currentProjectId = null;
+
+/* ===== RENDER CARDS ===== */
+function renderCards() {
+  const html = projects.map(p => {
+    const done = p.currentStage;
+    const total = p.stages.length;
+    const percent = Math.round((done / total) * 100);
+    let badge = '';
+    if (percent === 100) badge = '<span class="badge badge-done">Завершён</span>';
+    else if (percent === 0) badge = '<span class="badge badge-new">Новый</span>';
+    else badge = '<span class="badge badge-progress">В работе</span>';
+
+    return `
+      <div class="card" onclick="openProject(${p.id})">
+        <div class="card-cover ${p.cover}">${p.icon}</div>
+        <div class="card-body">
+          <h3>${p.title}</h3>
+          <div style="font-size:13px; color:var(--text-dim); margin-bottom:8px;">${p.type}</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:${percent}%"></div></div>
+          <div class="card-meta">
+            ${badge}
+            <span>${done}/${total} этапов</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  document.getElementById('home-cards').innerHTML = html;
+  document.getElementById('all-cards').innerHTML = html;
+}
+
+/* ===== OPEN PROJECT ===== */
+function openProject(id) {
+  currentProjectId = id;
+  const p = projects.find(x => x.id === id);
+  if (!p) return;
+
+  document.getElementById('detail-title').textContent = p.title;
+  document.getElementById('detail-subtitle').textContent = `${p.type} · Дедлайн: ${p.deadline}`;
+
+  const total = p.stages.length;
+  const percent = Math.round((p.currentStage / total) * 100);
+  document.getElementById('detail-circle').style.setProperty('--p', percent + '%');
+  document.getElementById('detail-percent').textContent = percent + '%';
+  document.getElementById('detail-steps').textContent = `${p.currentStage} из ${total} этапов`;
+
+  // stages
+  const stagesHtml = p.stages.map((s, i) => {
+    let cls = '';
+    let status = '';
+    if (i < p.currentStage) { cls = 'done'; status = '✓'; }
+    else if (i === p.currentStage) { cls = 'current'; status = '→'; }
+    else { status = '○'; }
+
+    return `
+      <div class="stage ${cls}" onclick="advanceStage(${p.id}, ${i})">
+        <div class="stage-num">${String(i+1).padStart(2,'0')}</div>
+        <div class="stage-info">
+          <h4>${s.name}</h4>
+          <p>${s.desc}</p>
+        </div>
+        <div class="stage-status">${status}</div>
+      </div>
+    `;
+  }).join('');
+  document.getElementById('stages-list').innerHTML = stagesHtml;
+
+  // feedback
+  renderFeedback(p);
+
+  showPage('project');
+}
+
+function renderFeedback(p) {
+  const el = document.getElementById('feedback-list');
+  if (!p.feedback || p.feedback.length === 0) {
+    el.innerHTML = '<div style="font-size:13px; color:var(--text-dim); padding:8px 0;">Пока нет комментариев</div>';
+    return;
+  }
+  el.innerHTML = p.feedback.map(f => `
+    <div class="feedback">
+      <div class="feedback-head">
+        <div class="feedback-avatar">${f.initials || 'П'}</div>
+        <div>
+          <div class="feedback-author">${f.author}</div>
+          <div class="feedback-time">${f.time}</div>
+        </div>
+      </div>
+      <div class="feedback-text">${f.text}</div>
+    </div>
+  `).join('');
+}
+
+/* ===== ADVANCE STAGE ===== */
+function advanceStage(projectId, stageIndex) {
+  const p = projects.find(x => x.id === projectId);
+  if (!p) return;
+
+  if (stageIndex < p.currentStage) {
+    toast('Этот этап уже завершён ✓');
+    return;
+  }
+  if (stageIndex > p.currentStage) {
+    toast('Сначала завершите текущий этап');
+    return;
+  }
+
+  if (p.currentStage < p.stages.length) {
+    p.currentStage++;
+    toast(`Этап «${p.stages[stageIndex].name}» завершён ✓`);
+    renderCards();
+    openProject(projectId);
+  } else {
+    toast('Все этапы уже завершены!');
+  }
+}
+
+/* ===== ADD COMMENT ===== */
+function addComment() {
+  const input = document.getElementById('new-comment');
+  const text = input.value.trim();
+  if (!text) return;
+
+  const p = projects.find(x => x.id === currentProjectId);
+  if (!p) return;
+
+  p.feedback.unshift({
+    author: 'Анна Смирнова (вы)',
+    text: text,
+    time: 'только что',
+    initials: 'АС'
+  });
+  input.value = '';
+  renderFeedback(p);
+  toast('Комментарий добавлен');
+}
+
+/* ===== CREATE PROJECT ===== */
+let selectedType = null;
+document.querySelectorAll('#type-chips .chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('#type-chips .chip').forEach(c => c.classList.remove('selected'));
+    chip.classList.add('selected');
+    selectedType = chip.dataset.type;
+  });
+});
+
+const typeMap = {
+  web: { label: 'Веб-дизайн', icon: '🌐', cover: 'c1' },
+  brand: { label: 'Фирменный стиль', icon: '☕', cover: 'c2' },
+  mobile: { label: 'Мобильное приложение', icon: '📱', cover: 'c3' },
+  poster: { label: 'Плакат / графика', icon: '🎨', cover: 'c4' }
+};
+
+function createProject() {
+  const title = document.getElementById('new-title').value.trim();
+  const desc = document.getElementById('new-desc').value.trim();
+  const deadline = document.getElementById('new-deadline').value;
+
+  if (!title) { toast('Введите название проекта'); return; }
+  if (!selectedType) { toast('Выберите тип проекта'); return; }
+
+  const t = typeMap[selectedType];
+  const newProject = {
+    id: Date.now(),
+    title: title,
+    type: t.label,
+    icon: t.icon,
+    cover: t.cover,
+    deadline: deadline ? new Date(deadline).toLocaleDateString('ru-RU', { day:'numeric', month:'long' }) : 'без дедлайна',
+    currentStage: 0,
+    stages: JSON.parse(JSON.stringify(defaultStages)),
+   
