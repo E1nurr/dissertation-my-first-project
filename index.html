@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ДизайнСреда — цифровая образовательная среда</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -83,11 +86,7 @@
     color: white;
   }
 
-  .login-logo-text {
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: -.02em;
-  }
+  .login-logo-text { font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
 
   .login-sub {
     text-align: center;
@@ -142,32 +141,14 @@
   }
 
   .login-divider::before,
-  .login-divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
+  .login-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-  .demo-buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
+  .demo-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
-  .login-footer {
-    text-align: center;
-    color: var(--text-dim);
-    font-size: 12px;
-    margin-top: 28px;
-  }
+  .login-footer { text-align: center; color: var(--text-dim); font-size: 12px; margin-top: 28px; }
 
   /* ============ APP LAYOUT ============ */
-  .app {
-    display: none;
-    min-height: 100vh;
-  }
-
+  .app { display: none; min-height: 100vh; }
   .app.active { display: grid; grid-template-columns: 248px 1fr; }
 
   /* ============ SIDEBAR ============ */
@@ -251,11 +232,7 @@
   .user-mini-role { font-size: 11px; color: var(--text-dim); }
 
   /* ============ MAIN ============ */
-  .main {
-    padding: 32px 40px 80px;
-    max-width: 1280px;
-    width: 100%;
-  }
+  .main { padding: 32px 40px 80px; max-width: 1280px; width: 100%; }
 
   .page { display: none; }
   .page.active { display: block; animation: fadeUp .25s ease-out; }
@@ -281,10 +258,7 @@
     margin-bottom: 4px;
   }
 
-  .page-header p {
-    color: var(--text-dim);
-    font-size: 14px;
-  }
+  .page-header p { color: var(--text-dim); font-size: 14px; }
 
   /* ============ BUTTONS ============ */
   .btn {
@@ -306,17 +280,10 @@
   .btn-primary { background: var(--accent); color: white; }
   .btn-primary:hover { background: #4338ca; transform: translateY(-1px); box-shadow: var(--shadow-md); }
 
-  .btn-secondary {
-    background: var(--surface);
-    color: var(--text);
-    border: 1px solid var(--border);
-  }
+  .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
   .btn-secondary:hover { background: var(--surface-2); }
 
-  .btn-ghost {
-    background: transparent;
-    color: var(--text-dim);
-  }
+  .btn-ghost { background: transparent; color: var(--text-dim); }
   .btn-ghost:hover { background: var(--surface-2); color: var(--text); }
 
   .btn-sm { padding: 7px 13px; font-size: 13px; border-radius: 8px; }
@@ -341,17 +308,8 @@
 
   .stat:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 
-  .stat-label {
-    color: var(--text-dim);
-    font-size: 13px;
-    margin-bottom: 8px;
-  }
-
-  .stat-value {
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: -.03em;
-  }
+  .stat-label { color: var(--text-dim); font-size: 13px; margin-bottom: 8px; }
+  .stat-value { font-size: 28px; font-weight: 700; letter-spacing: -.03em; }
 
   /* ============ CARDS ============ */
   .cards-grid {
@@ -372,11 +330,7 @@
     box-shadow: var(--shadow-sm);
   }
 
-  .card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--accent);
-  }
+  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--accent); }
 
   .card-cover {
     height: 130px;
@@ -394,19 +348,8 @@
   .cover-6 { background: linear-gradient(135deg, #30cfd0, #330867); }
 
   .card-body { padding: 16px 18px 18px; flex: 1; display: flex; flex-direction: column; }
-
-  .card-title {
-    font-size: 15px;
-    font-weight: 600;
-    margin-bottom: 4px;
-    letter-spacing: -.01em;
-  }
-
-  .card-sub {
-    font-size: 12.5px;
-    color: var(--text-dim);
-    margin-bottom: 14px;
-  }
+  .card-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; letter-spacing: -.01em; }
+  .card-sub { font-size: 12.5px; color: var(--text-dim); margin-bottom: 14px; }
 
   .card-progress {
     height: 5px;
@@ -431,10 +374,7 @@
     gap: 8px;
   }
 
-  .card-stage {
-    font-size: 12px;
-    color: var(--text-dim);
-  }
+  .card-stage { font-size: 12px; color: var(--text-dim); }
 
   /* ============ BADGES ============ */
   .badge {
@@ -487,11 +427,7 @@
   }
 
   .tab:hover { color: var(--text); }
-  .tab.active {
-    background: var(--surface);
-    color: var(--text);
-    box-shadow: var(--shadow-sm);
-  }
+  .tab.active { background: var(--surface); color: var(--text); box-shadow: var(--shadow-sm); }
 
   .search-input {
     flex: 1;
@@ -577,7 +513,7 @@
   }
   .back-link:hover { color: var(--accent); }
 
-  /* ============ PROJECT DETAIL HEADER ============ */
+  /* ============ PROJECT HERO ============ */
   .project-hero {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -592,7 +528,6 @@
     display: grid;
     place-items: center;
     font-size: 60px;
-    position: relative;
   }
 
   .project-hero-body {
@@ -611,11 +546,7 @@
     margin-bottom: 6px;
   }
 
-  .project-hero-body p {
-    color: var(--text-dim);
-    font-size: 14px;
-    max-width: 560px;
-  }
+  .project-hero-body p { color: var(--text-dim); font-size: 14px; max-width: 560px; }
 
   .project-progress-block {
     display: flex;
@@ -643,14 +574,9 @@
     background: var(--surface);
   }
 
-  .progress-ring span {
-    position: relative;
-    z-index: 1;
-    font-size: 14px;
-    font-weight: 700;
-  }
+  .progress-ring span { position: relative; z-index: 1; font-size: 14px; font-weight: 700; }
 
-  /* ============ TABS INSIDE PROJECT ============ */
+  /* ============ INNER TABS ============ */
   .inner-tabs {
     display: flex;
     gap: 2px;
@@ -675,11 +601,7 @@
   .inner-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
 
   /* ============ STAGES ============ */
-  .stages-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+  .stages-list { display: flex; flex-direction: column; gap: 10px; }
 
   .stage-item {
     background: var(--surface);
@@ -760,18 +682,9 @@
     margin-bottom: 10px;
   }
 
-  .stage-detail-header p {
-    color: var(--text-dim);
-    font-size: 14px;
-    max-width: 640px;
-  }
+  .stage-detail-header p { color: var(--text-dim); font-size: 14px; max-width: 640px; }
 
-  .task-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+  .task-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 
   .task-list li {
     display: flex;
@@ -782,6 +695,7 @@
     background: var(--surface-2);
     border-radius: 10px;
     transition: background .15s;
+    cursor: pointer;
   }
 
   .task-list li:hover { background: var(--accent-soft); }
@@ -793,7 +707,6 @@
     display: grid;
     place-items: center;
     flex-shrink: 0;
-    cursor: pointer;
     font-size: 12px;
     color: transparent;
     transition: all .15s;
@@ -808,11 +721,7 @@
 
   .task-list li.done span:last-child { text-decoration: line-through; color: var(--text-dim); }
 
-  .tip-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 12px;
-  }
+  .tip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
 
   .tip {
     background: var(--accent-soft);
@@ -826,11 +735,7 @@
   .tip-title { font-weight: 600; margin-bottom: 4px; font-size: 13px; }
 
   /* ============ MATERIALS ============ */
-  .material-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+  .material-list { display: flex; flex-direction: column; gap: 8px; }
 
   .material-row {
     display: flex;
@@ -859,12 +764,8 @@
   .material-info .name { font-size: 13.5px; font-weight: 500; }
   .material-info .meta { font-size: 11.5px; color: var(--text-dim); margin-top: 2px; }
 
-  /* ============ REFERENCE BOARD ============ */
-  .ref-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 16px;
-  }
+  /* ============ REFERENCES ============ */
+  .ref-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
 
   .ref-card {
     background: var(--surface);
@@ -877,31 +778,15 @@
 
   .ref-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
 
-  .ref-img {
-    height: 150px;
-    display: grid;
-    place-items: center;
-    font-size: 36px;
-  }
-
+  .ref-img { height: 150px; display: grid; place-items: center; font-size: 36px; }
   .ref-body { padding: 12px 14px; }
   .ref-body h4 { font-size: 13.5px; font-weight: 600; margin-bottom: 4px; }
   .ref-body p { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
 
-  /* ============ FEEDBACK / CHAT ============ */
-  .chat {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-bottom: 20px;
-  }
+  /* ============ CHAT ============ */
+  .chat { display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px; }
 
-  .msg {
-    display: flex;
-    gap: 12px;
-    max-width: 85%;
-  }
-
+  .msg { display: flex; gap: 12px; max-width: 85%; }
   .msg.me { align-self: flex-end; flex-direction: row-reverse; }
 
   .msg-avatar {
@@ -928,18 +813,10 @@
 
   .msg.me .msg-bubble { background: var(--accent); color: white; }
 
-  .msg-meta {
-    font-size: 11.5px;
-    color: var(--text-dim);
-    margin-bottom: 4px;
-    font-weight: 500;
-  }
+  .msg-meta { font-size: 11.5px; color: var(--text-dim); margin-bottom: 4px; font-weight: 500; }
   .msg.me .msg-meta { text-align: right; }
 
-  .chat-input {
-    display: flex;
-    gap: 10px;
-  }
+  .chat-input { display: flex; gap: 10px; }
 
   .chat-input input {
     flex: 1;
@@ -955,11 +832,7 @@
   .chat-input input:focus { border-color: var(--accent); }
 
   /* ============ EVALUATION ============ */
-  .eval-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-  }
+  .eval-table { width: 100%; border-collapse: collapse; font-size: 14px; }
 
   .eval-table th {
     text-align: left;
@@ -972,17 +845,10 @@
     letter-spacing: .04em;
   }
 
-  .eval-table td {
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--border);
-  }
-
+  .eval-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); }
   .eval-table tr:last-child td { border-bottom: none; }
 
-  .score {
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
-  }
+  .score { font-weight: 600; font-variant-numeric: tabular-nums; }
 
   .score-bar {
     display: inline-block;
@@ -995,10 +861,7 @@
     margin-right: 10px;
   }
 
-  .score-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent), #7c73f0);
-  }
+  .score-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #7c73f0); }
 
   .eval-total {
     display: flex;
@@ -1066,27 +929,14 @@
   .profile-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
   .profile-header p { color: var(--text-dim); font-size: 14px; }
 
-  .info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 14px;
-  }
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
 
-  .info-item {
-    background: var(--surface-2);
-    border-radius: 10px;
-    padding: 14px 16px;
-  }
-
+  .info-item { background: var(--surface-2); border-radius: 10px; padding: 14px 16px; }
   .info-item .label { font-size: 12px; color: var(--text-dim); margin-bottom: 4px; }
   .info-item .value { font-size: 14px; font-weight: 500; }
 
-  /* ============ TABLE ============ */
-  .data-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-  }
+  /* ============ DATA TABLE ============ */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 14px; }
 
   .data-table th {
     text-align: left;
@@ -1099,11 +949,7 @@
     border-bottom: 1px solid var(--border);
   }
 
-  .data-table td {
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--border);
-  }
-
+  .data-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); }
   .data-table tbody tr { cursor: pointer; transition: background .12s; }
   .data-table tbody tr:hover { background: var(--surface-2); }
 
@@ -1129,7 +975,7 @@
 
   .toast.show { transform: translate(-50%, 0); opacity: 1; }
 
-  /* ============ TASK CARD (dashboard) ============ */
+  /* ============ TASK ROW ============ */
   .task-row {
     display: flex;
     align-items: center;
@@ -1141,13 +987,7 @@
 
   .task-row:last-child { border-bottom: none; }
 
-  .task-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-    flex-shrink: 0;
-  }
-
+  .task-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
   .task-row .task-text { flex: 1; }
   .task-row .task-due { font-size: 12.5px; color: var(--text-dim); }
   .task-row .task-due.soon { color: var(--warning); font-weight: 500; }
@@ -1164,14 +1004,7 @@
   }
   body.dark .feedback-preview { background: rgba(79,70,229,.15); }
 
-  .feedback-preview-author {
-    font-weight: 600;
-    margin-bottom: 6px;
-    font-size: 13px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+  .feedback-preview-author { font-weight: 600; margin-bottom: 6px; font-size: 13px; display: flex; align-items: center; gap: 8px; }
 
   /* ============ CHIPS ============ */
   .chip-row { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -1189,12 +1022,7 @@
   }
 
   .chip:hover { background: var(--border); }
-
-  .chip.selected {
-    background: var(--accent-soft);
-    border-color: var(--accent);
-    color: var(--accent);
-  }
+  .chip.selected { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
   body.dark .chip.selected { color: #a5b4fc; }
 
   /* ============ FORM ============ */
@@ -1207,22 +1035,12 @@
     box-shadow: var(--shadow-sm);
   }
 
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
   @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
 
-  /* ============ EMPTY STATE ============ */
-  .empty {
-    text-align: center;
-    padding: 48px 24px;
-    color: var(--text-dim);
-    font-size: 14px;
-  }
-
+  /* ============ EMPTY ============ */
+  .empty { text-align: center; padding: 48px 24px; color: var(--text-dim); font-size: 14px; }
   .empty-icon { font-size: 40px; margin-bottom: 12px; opacity: .5; }
 
   /* ============ REVIEW PANEL ============ */
@@ -1236,12 +1054,7 @@
     box-shadow: var(--shadow-sm);
   }
 
-  .status-options {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-bottom: 20px;
-  }
+  .status-options { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
 
   .status-opt {
     padding: 10px 14px;
@@ -1257,13 +1070,127 @@
   }
 
   .status-opt:hover { background: var(--surface-2); }
-  .status-opt.selected {
-    background: var(--accent-soft);
-    border-color: var(--accent);
-    color: var(--accent);
+  .status-opt.selected { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 500; }
+  body.dark .status-opt.selected { color: #a5b4fc; }
+
+  /* ============ SCORE ROW ============ */
+  .score-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 13.5px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .score-row:last-child { border-bottom: none; }
+  .score-row label { color: var(--text-dim); flex: 1; }
+
+  .score-input {
+    width: 56px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 8px;
+    text-align: center;
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--text);
+    outline: none;
+  }
+
+  .score-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+
+  /* ============ TIMELINE ============ */
+  .timeline { position: relative; padding-left: 28px; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 9px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--border);
+    border-radius: 1px;
+  }
+
+  .timeline-item { position: relative; padding-bottom: 22px; }
+  .timeline-item:last-child { padding-bottom: 0; }
+
+  .timeline-dot {
+    position: absolute;
+    left: -28px;
+    top: 4px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 2px solid var(--border);
+    display: grid;
+    place-items: center;
+    font-size: 10px;
+    color: var(--text-dim);
+    z-index: 1;
+  }
+
+  .timeline-item.done .timeline-dot { background: var(--success); border-color: var(--success); color: white; }
+  .timeline-item.current .timeline-dot { background: var(--accent); border-color: var(--accent); color: white; box-shadow: 0 0 0 4px var(--accent-soft); }
+
+  .timeline-item h4 { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+  .timeline-item p { font-size: 12.5px; color: var(--text-dim); line-height: 1.5; }
+
+  /* ============ ALERT ============ */
+  .alert {
+    display: flex;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-info { background: var(--accent-soft); color: var(--accent); }
+  body.dark .alert-info { color: #a5b4fc; }
+  .alert-warning { background: rgba(245,158,11,.12); color: #b45309; }
+  body.dark .alert-warning { color: #fbbf24; }
+
+  /* ============ TAG ============ */
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    background: var(--surface-2);
+    border-radius: 6px;
+    font-size: 11.5px;
+    color: var(--text-dim);
     font-weight: 500;
   }
-  body.dark .status-opt.selected { color: #a5b4fc; }
+
+  .tag-accent { background: var(--accent-soft); color: var(--accent); }
+
+  /* ============ UPLOAD ZONE ============ */
+  .upload-zone {
+    border: 2px dashed var(--border);
+    border-radius: 14px;
+    padding: 32px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .18s;
+    background: var(--surface-2);
+  }
+
+  .upload-zone:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .upload-zone .upload-icon { font-size: 32px; margin-bottom: 10px; opacity: .7; }
+  .upload-zone .upload-text { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .upload-zone .upload-hint { font-size: 12.5px; color: var(--text-dim); }
 
   /* scrollbar */
   ::-webkit-scrollbar { width: 8px; height: 8px; }
@@ -1308,7 +1235,6 @@
 <!-- ================= APP ================= -->
 <div class="app" id="app">
 
-  <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-logo" onclick="nav('dashboard')">
       <div class="logo-mark">◆</div>
@@ -1334,10 +1260,9 @@
     </div>
   </aside>
 
-  <!-- MAIN -->
   <main class="main">
 
-    <!-- ============ STUDENT: DASHBOARD ============ -->
+    <!-- DASHBOARD -->
     <div class="page" id="page-dashboard">
       <div class="page-header">
         <div>
@@ -1392,7 +1317,7 @@
       </div>
     </div>
 
-    <!-- ============ STUDENT: PROJECTS ============ -->
+    <!-- PROJECTS -->
     <div class="page" id="page-projects">
       <div class="page-header">
         <div>
@@ -1415,7 +1340,7 @@
       <div class="cards-grid" id="projects-cards"></div>
     </div>
 
-    <!-- ============ STUDENT: CREATE PROJECT ============ -->
+    <!-- CREATE PROJECT -->
     <div class="page" id="page-create-project">
       <div class="back-link" onclick="nav('projects')">← Назад к проектам</div>
       <div class="page-header">
@@ -1473,7 +1398,7 @@
       </div>
     </div>
 
-    <!-- ============ STUDENT: PROJECT DETAIL ============ -->
+    <!-- PROJECT DETAIL -->
     <div class="page" id="page-project">
       <div class="back-link" onclick="nav('projects')">← Назад к проектам</div>
 
@@ -1508,7 +1433,7 @@
       <div class="project-tab-body" id="project-tab-body"></div>
     </div>
 
-    <!-- ============ STUDENT: PORTFOLIO ============ -->
+    <!-- PORTFOLIO -->
     <div class="page" id="page-portfolio">
       <div class="portfolio-hero">
         <div class="portfolio-avatar">ЭС</div>
@@ -1522,7 +1447,7 @@
       <div class="cards-grid" id="portfolio-cards"></div>
     </div>
 
-    <!-- ============ STUDENT: PROFILE ============ -->
+    <!-- PROFILE -->
     <div class="page" id="page-profile">
       <div class="profile-header">
         <div class="profile-avatar" id="profile-avatar">ЭС</div>
@@ -1530,7 +1455,7 @@
           <h1 id="profile-name">Эльнур Сафаров</h1>
           <p id="profile-role">Студент · Группа Д-21 · Дизайн</p>
         </div>
-        <button class="btn btn-secondary" style="margin-left:auto;">Редактировать профиль</button>
+        <button class="btn btn-secondary" style="margin-left:auto;" onclick="toast('Редактирование профиля (демо)')">Редактировать профиль</button>
       </div>
 
       <div class="panel">
@@ -1554,7 +1479,7 @@
       </div>
     </div>
 
-    <!-- ============ STUDENT: MATERIALS ============ -->
+    <!-- MATERIALS LIBRARY -->
     <div class="page" id="page-materials">
       <div class="page-header">
         <div>
@@ -1565,7 +1490,7 @@
       <div id="materials-library"></div>
     </div>
 
-    <!-- ============ STUDENT: SETTINGS ============ -->
+    <!-- SETTINGS -->
     <div class="page" id="page-settings">
       <div class="page-header"><div><h1>Настройки</h1><p>Управление профилем и интерфейсом</p></div></div>
 
@@ -1585,7 +1510,7 @@
       </div>
     </div>
 
-    <!-- ============ TEACHER: DASHBOARD ============ -->
+    <!-- TEACHER: DASHBOARD -->
     <div class="page" id="page-teacher-dashboard">
       <div class="page-header">
         <div>
@@ -1606,7 +1531,7 @@
       <div class="cards-grid" id="teacher-review-cards"></div>
     </div>
 
-    <!-- ============ TEACHER: STUDENTS ============ -->
+    <!-- TEACHER: STUDENTS -->
     <div class="page" id="page-teacher-students">
       <div class="page-header"><div><h1>Студенты</h1><p>Список студентов и их проектная активность</p></div></div>
 
@@ -1626,7 +1551,7 @@
       </div>
     </div>
 
-    <!-- ============ TEACHER: PROJECTS ============ -->
+    <!-- TEACHER: PROJECTS -->
     <div class="page" id="page-teacher-projects">
       <div class="page-header"><div><h1>Проекты студентов</h1><p>Все проекты, доступные для проверки</p></div></div>
 
@@ -1643,7 +1568,7 @@
       <div class="cards-grid" id="teacher-projects-cards"></div>
     </div>
 
-    <!-- ============ TEACHER: REVIEW PROJECT ============ -->
+    <!-- TEACHER: REVIEW -->
     <div class="page" id="page-teacher-review">
       <div class="back-link" onclick="nav('teacher-projects')">← Назад к проектам</div>
 
@@ -1705,7 +1630,7 @@
       </div>
     </div>
 
-    <!-- ============ TEACHER: TASKS ============ -->
+    <!-- TEACHER: TASKS -->
     <div class="page" id="page-teacher-tasks">
       <div class="page-header">
         <div><h1>Задания</h1><p>Учебные задания для студентов</p></div>
@@ -1716,7 +1641,7 @@
         <div class="card">
           <div class="card-cover cover-1" style="font-size:36px;">🌐</div>
           <div class="card-body">
-            <h3 class="card-title">Разработка лендинга</h3>
+            <div class="card-title">Разработка лендинга</div>
             <p class="card-sub">Веб-дизайн · 18 студентов</p>
             <div class="card-footer">
               <span class="badge badge-progress">Активно</span>
@@ -1727,7 +1652,7 @@
         <div class="card">
           <div class="card-cover cover-5" style="font-size:36px;">☕</div>
           <div class="card-body">
-            <h3 class="card-title">Фирменный стиль кофейни</h3>
+            <div class="card-title">Фирменный стиль кофейни</div>
             <p class="card-sub">Брендинг · 14 студентов</p>
             <div class="card-footer">
               <span class="badge badge-progress">Активно</span>
@@ -1738,7 +1663,905 @@
         <div class="card">
           <div class="card-cover cover-6" style="font-size:36px;">🎨</div>
           <div class="card-body">
-            <h3 class="card-title">Социальный плакат</h3>
+            <div class="card-title">Социальный плакат</div>
             <p class="card-sub">Графический дизайн · 22 студента</p>
             <div class="card-footer">
-              <span class="badge badge-done">Завершено
+              <span class="badge badge-done">Завершено</span>
+              <span style="font-size:12px;color:var(--text-dim);">до 5 декабря</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEACHER: NEW TASK -->
+    <div class="page" id="page-teacher-task-new">
+      <div class="back-link" onclick="nav('teacher-tasks')">← Назад к заданиям</div>
+      <div class="page-header"><div><h1>Создание задания</h1><p>Новое учебное задание для студентов</p></div></div>
+
+      <div class="form-panel">
+        <div class="field"><label>Название</label><input type="text" id="nt-title" placeholder="Например: Разработка лендинга"></div>
+        <div class="field"><label>Описание</label><textarea id="nt-desc" placeholder="Опишите задание..."></textarea></div>
+        <div class="field"><label>Цель</label><textarea id="nt-goal" placeholder="Что должен освоить студент..."></textarea></div>
+        <div class="field">
+          <label>Тип проекта</label>
+          <select id="nt-type">
+            <option>Веб-дизайн</option>
+            <option>Графический дизайн</option>
+            <option>UI/UX</option>
+            <option>Мобильное приложение</option>
+            <option>Брендинг</option>
+            <option>Иллюстрация</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Срок выполнения</label><input type="date" id="nt-deadline"></div>
+          <div class="field"><label>Количество этапов</label><input type="number" id="nt-stages" value="7" min="1" max="12"></div>
+        </div>
+        <div class="field"><label>Критерии оценивания</label><textarea id="nt-criteria" placeholder="Исследование, Концепция, Визуальное решение..."></textarea></div>
+        <div class="field"><label>Методические материалы</label><input type="text" id="nt-materials" placeholder="Ссылка или название файла"></div>
+        <button class="btn btn-primary" onclick="createTask()">Опубликовать задание</button>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<div class="toast" id="toast">Готово</div>
+
+<script>
+/* ============================================================
+   ДАННЫЕ
+   ============================================================ */
+const defaultStages = [
+  { name: 'Исследование', desc: 'Изучить проблему, аудиторию и существующие решения', goal: 'Понять контекст проекта и сформулировать проблему', tasks: ['Определить целевую аудиторию','Изучить конкурентов','Провести анализ аналогов','Сформулировать проблему'] },
+  { name: 'Анализ', desc: 'Систематизация собранной информации', goal: 'Выявить ключевые паттерны и возможности', tasks: ['Составить карту пользователей','Выделить ключевые инсайты','Определить критерии успеха'] },
+  { name: 'Концепция', desc: 'Разработать основную концепцию проекта', goal: 'Сформировать визуальное направление', tasks: ['Создать moodboard','Определить визуальное направление','Разработать 2–3 концепции','Выбрать итоговый вариант'] },
+  { name: 'Прототипирование', desc: 'Создать структуру и wireframes', goal: 'Создать интерактивный прототип основных экранов', tasks: ['Определить структуру страниц','Создать wireframe','Разработать основные экраны','Настроить переходы','Проверить пользовательский сценарий'] },
+  { name: 'Визуальный дизайн', desc: 'Финальное визуальное оформление', goal: 'Разработать финальные макеты', tasks: ['Собрать UI-кит','Оформить все экраны','Проработать состояния и анимации'] },
+  { name: 'Презентация', desc: 'Подготовка к защите проекта', goal: 'Презентовать результат', tasks: ['Собрать презентацию','Подготовить описание','Отрепетировать защиту'] },
+  { name: 'Защита', desc: 'Публичная защита проекта', goal: 'Успешно защитить проект', tasks: ['Выступление','Ответы на вопросы','Получить обратную связь'] }
+];
+
+let projects = [
+  {
+    id: 1,
+    title: 'Редизайн сайта университета',
+    type: 'Веб-дизайн',
+    icon: '🌐',
+    cover: 'cover-1',
+    deadline: '15 декабря',
+    status: 'progress',
+    currentStage: 3,
+    goal: 'Разработать современную структуру и визуальное оформление сайта университета.',
+    audience: 'Абитуриенты, студенты и сотрудники университета (17–45 лет)',
+    tools: 'Figma, Photoshop, Illustrator',
+    stages: JSON.parse(JSON.stringify(defaultStages)),
+    materials: [
+      { icon:'📄', name:'Методичка «Как проводить исследование»', meta:'PDF · 1.2 MB' },
+      { icon:'📊', name:'Анализ конкурентов.pdf', meta:'PDF · 3.4 MB' },
+      { icon:'🖼', name:'Мудборд.fig', meta:'Figma · ссылка' },
+      { icon:'🔗', name:'Figma — прототип главной', meta:'Ссылка' }
+    ],
+    references: [
+      { icon:'🖥', title:'Главная страница Apple', source:'apple.com', comment:'Минималистичная композиция, много воздуха.' },
+      { icon:'🌐', title:'Сайт MIT', source:'mit.edu', comment:'Хорошая типографика, крупные заголовки.' },
+      { icon:'📱', title:'Stripe — Solutions', source:'stripe.com', comment:'Отличные градиенты и сетка.' }
+    ],
+    feedback: [
+      { author:'Преподаватель Иванова', initials:'ПИ', role:'teacher', text:'Отличная работа с исследованием! Концепция принята.', time:'Вчера' },
+      { author:'Преподаватель Иванова', initials:'ПИ', role:'teacher', text:'Попробуйте проработать ещё 2 варианта главной страницы.', time:'2 часа назад' }
+    ],
+    evaluation: {
+      criteria: [
+        { name:'Исследование проблемы', score:4, max:5 },
+        { name:'Работа с целевой аудиторией', score:5, max:5 },
+        { name:'Концепция', score:4, max:5 },
+        { name:'Визуальное решение', score:5, max:5 },
+        { name:'UX/UI', score:4, max:5 },
+        { name:'Презентация', score:5, max:5 }
+      ],
+      comment: 'Проект хорошо структурирован. Основная зона для развития — пользовательский сценарий.'
+    }
+  },
+  {
+    id: 2,
+    title: 'Мобильное приложение для студентов',
+    type: 'UI/UX',
+    icon: '📱',
+    cover: 'cover-3',
+    deadline: '20 января',
+    status: 'progress',
+    currentStage: 2,
+    goal: 'Создать удобное мобильное приложение для расписания и навигации по университету.',
+    audience: 'Студенты 1–4 курсов',
+    tools: 'Figma, Principle',
+    stages: JSON.parse(JSON.stringify(defaultStages)),
+    materials: [],
+    references: [],
+    feedback: [],
+    evaluation: null
+  },
+  {
+    id: 3,
+    title: 'Фирменный стиль кофейни',
+    type: 'Брендинг',
+    icon: '☕',
+    cover: 'cover-5',
+    deadline: '10 января',
+    status: 'done',
+    currentStage: 7,
+    goal: 'Разработать айдентику для городской кофейни.',
+    audience: 'Молодёжь 18–35 лет, жители центра',
+    tools: 'Illustrator, Photoshop',
+    stages: JSON.parse(JSON.stringify(defaultStages)),
+    materials: [],
+    references: [],
+    feedback: [],
+    evaluation: null
+  },
+  {
+    id: 4,
+    title: 'Социальный плакат',
+    type: 'Графический дизайн',
+    icon: '🎨',
+    cover: 'cover-2',
+    deadline: '5 января',
+    status: 'review',
+    currentStage: 4,
+    goal: 'Создать серию плакатов на социальную тему.',
+    audience: 'Городская аудитория',
+    tools: 'Illustrator, Photoshop',
+    stages: JSON.parse(JSON.stringify(defaultStages)),
+    materials: [],
+    references: [],
+    feedback: [],
+    evaluation: null
+  }
+];
+
+let currentUser = { role: 'student', name: 'Эльнур Сафаров', initials: 'ЭС' };
+let currentProjectId = null;
+let currentProjectTab = 'overview';
+let projectFilter = 'all';
+let projectSearch = '';
+let selectedType = null;
+
+/* ============================================================
+   АВТОРИЗАЦИЯ
+   ============================================================ */
+function login() {
+  const email = document.getElementById('login-email').value.trim();
+  if (email.includes('teacher')) demoLogin('teacher');
+  else demoLogin('student');
+}
+
+function demoLogin(role) {
+  currentUser.role = role;
+  if (role === 'teacher') {
+    currentUser.name = 'Преподаватель Иванова';
+    currentUser.initials = 'ПИ';
+  } else {
+    currentUser.name = 'Эльнур Сафаров';
+    currentUser.initials = 'ЭС';
+  }
+
+  document.getElementById('user-name').textContent = currentUser.name;
+  document.getElementById('user-role').textContent = role === 'teacher' ? 'Преподаватель' : 'Студент';
+  document.getElementById('user-avatar').textContent = currentUser.initials;
+
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').classList.add('active');
+
+  buildSidebar();
+  nav(role === 'teacher' ? 'teacher-dashboard' : 'dashboard');
+}
+
+function logout() {
+  document.getElementById('app').classList.remove('active');
+  document.getElementById('login-screen').style.display = 'grid';
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+function buildSidebar() {
+  const navEl = document.getElementById('sidebar-nav');
+  if (currentUser.role === 'teacher') {
+    navEl.innerHTML = `
+      <a data-nav="teacher-dashboard" onclick="nav('teacher-dashboard')"><span class="nav-icon">🏠</span><span>Панель</span></a>
+      <a data-nav="teacher-tasks" onclick="nav('teacher-tasks')"><span class="nav-icon">📋</span><span>Задания</span></a>
+      <a data-nav="teacher-students" onclick="nav('teacher-students')"><span class="nav-icon">👥</span><span>Студенты</span></a>
+      <a data-nav="teacher-projects" onclick="nav('teacher-projects')"><span class="nav-icon">📁</span><span>Проекты</span></a>
+      <a data-nav="materials" onclick="nav('materials')"><span class="nav-icon">📚</span><span>Материалы</span></a>
+    `;
+  } else {
+    navEl.innerHTML = `
+      <a data-nav="dashboard" onclick="nav('dashboard')"><span class="nav-icon">🏠</span><span>Главная</span></a>
+      <a data-nav="projects" onclick="nav('projects')"><span class="nav-icon">📁</span><span>Мои проекты</span></a>
+      <a data-nav="materials" onclick="nav('materials')"><span class="nav-icon">📚</span><span>Материалы</span></a>
+      <a data-nav="portfolio" onclick="nav('portfolio')"><span class="nav-icon">🎨</span><span>Портфолио</span></a>
+    `;
+  }
+}
+
+/* ============================================================
+   НАВИГАЦИЯ
+   ============================================================ */
+function nav(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('page-' + page);
+  if (el) el.classList.add('active');
+
+  document.querySelectorAll('.sidebar-nav a').forEach(a => {
+    a.classList.toggle('active', a.dataset.nav === page);
+  });
+
+  if (page === 'dashboard') renderDashboard();
+  if (page === 'projects') renderProjects();
+  if (page === 'portfolio') renderPortfolio();
+  if (page === 'materials') renderMaterialsLibrary();
+  if (page === 'teacher-dashboard') renderTeacherDashboard();
+  if (page === 'teacher-projects') renderTeacherProjects();
+  if (page === 'teacher-review') renderTeacherReview();
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ============================================================
+   РЕНДЕР КАРТОЧЕК
+   ============================================================ */
+function projectCardHTML(p) {
+  const total = p.stages.length;
+  const percent = Math.round((p.currentStage / total) * 100);
+  const stageName = p.currentStage < total ? p.stages[p.currentStage].name : 'Завершён';
+
+  let badge = '';
+  if (p.status === 'done' || percent === 100) badge = '<span class="badge badge-done">Завершён</span>';
+  else if (p.status === 'review') badge = '<span class="badge badge-review">На проверке</span>';
+  else if (p.status === 'rework') badge = '<span class="badge badge-rework">Доработка</span>';
+  else badge = '<span class="badge badge-progress">В работе</span>';
+
+  return `
+    <div class="card" onclick="openProject(${p.id})">
+      <div class="card-cover ${p.cover}">${p.icon}</div>
+      <div class="card-body">
+        <div class="card-title">${p.title}</div>
+        <div class="card-sub">${p.type}</div>
+        <div class="card-progress"><div class="card-progress-fill" style="width:${percent}%"></div></div>
+        <div class="card-footer">
+          ${badge}
+          <span class="card-stage">${stageName} · ${percent}%</span>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderDashboard() {
+  document.getElementById('dash-cards').innerHTML =
+    projects.slice(0, 2).map(projectCardHTML).join('');
+}
+
+function setProjectFilter(filter, el) {
+  projectFilter = filter;
+  document.querySelectorAll('#projects-tabs .tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderProjects();
+}
+
+function searchProjects(value) {
+  projectSearch = value.toLowerCase();
+  renderProjects();
+}
+
+function renderProjects() {
+  let list = projects.slice();
+
+  if (projectFilter === 'progress') list = list.filter(p => p.status === 'progress');
+  if (projectFilter === 'review') list = list.filter(p => p.status === 'review');
+  if (projectFilter === 'done') list = list.filter(p => p.status === 'done' || p.currentStage >= p.stages.length);
+
+  if (projectSearch) list = list.filter(p => p.title.toLowerCase().includes(projectSearch));
+
+  document.getElementById('projects-cards').innerHTML = list.length
+    ? list.map(projectCardHTML).join('')
+    : '<div class="empty"><div class="empty-icon">📂</div>Проекты не найдены</div>';
+}
+
+function renderPortfolio() {
+  document.getElementById('portfolio-cards').innerHTML =
+    projects.map(projectCardHTML).join('');
+}
+
+/* ============================================================
+   ОТКРЫТИЕ ПРОЕКТА
+   ============================================================ */
+function openProject(id) {
+  const p = projects.find(x => x.id === id);
+  if (!p) return;
+  currentProjectId = id;
+
+  document.getElementById('ph-cover').className = 'project-hero-cover ' + p.cover;
+  document.getElementById('ph-cover').textContent = p.icon;
+  document.getElementById('ph-title').textContent = p.title;
+  document.getElementById('ph-desc').textContent = p.goal;
+  document.getElementById('ph-deadline').textContent = 'Дедлайн: ' + p.deadline;
+
+  const total = p.stages.length;
+  const percent = Math.round((p.currentStage / total) * 100);
+  document.getElementById('ph-ring').style.setProperty('--p', percent);
+  document.getElementById('ph-percent').textContent = percent + '%';
+  document.getElementById('ph-steps').textContent = `${p.currentStage} из ${total} этапов`;
+
+  const statusEl = document.getElementById('ph-status');
+  statusEl.className = 'badge ' + (
+    p.status === 'done' ? 'badge-done' :
+    p.status === 'review' ? 'badge-review' :
+    p.status === 'rework' ? 'badge-rework' : 'badge-progress'
+  );
+  statusEl.textContent =
+    p.status === 'done' ? 'Завершён' :
+    p.status === 'review' ? 'На проверке' :
+    p.status === 'rework' ? 'Требуется доработка' : 'В работе';
+
+  currentProjectTab = 'overview';
+  document.querySelectorAll('.inner-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.ptab === 'overview');
+  });
+
+  renderProjectTab();
+  nav('project');
+}
+
+function switchProjectTab(tab, el) {
+  currentProjectTab = tab;
+  document.querySelectorAll('.inner-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderProjectTab();
+}
+
+function renderProjectTab() {
+  const p = projects.find(x => x.id === currentProjectId);
+  if (!p) return;
+  const body = document.getElementById('project-tab-body');
+  const total = p.stages.length;
+  const percent = Math.round((p.currentStage / total) * 100);
+
+  if (currentProjectTab === 'overview') {
+    body.innerHTML = `
+      <div class="two-col">
+        <div>
+          <div class="panel">
+            <div class="panel-title">Цель проекта</div>
+            <p style="font-size:14px;color:var(--text-dim);line-height:1.65;">${p.goal}</p>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Целевая аудитория</div>
+            <p style="font-size:14px;color:var(--text-dim);line-height:1.65;">${p.audience}</p>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Инструменты</div>
+            <div class="chip-row">${p.tools.split(',').map(t => `<span class="tag tag-accent">${t.trim()}</span>`).join('')}</div>
+          </div>
+        </div>
+        <div>
+          <div class="panel">
+            <div class="panel-title">Прогресс проекта</div>
+            <div style="display:flex;align-items:center;gap:16px;">
+              <div style="flex:1;height:8px;background:var(--surface-2);border-radius:4px;overflow:hidden;">
+                <div style="height:100%;width:${percent}%;background:linear-gradient(90deg,var(--accent),#7c73f0);border-radius:4px;"></div>
+              </div>
+              <div style="font-weight:700;font-size:16px;">${percent}%</div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-title">Этапы</div>
+            <div class="timeline">
+              ${p.stages.map((s, i) => {
+                let cls = '';
+                let mark = '';
+                if (i < p.currentStage) { cls = 'done'; mark = '✓'; }
+                else if (i === p.currentStage) { cls = 'current'; mark = '●'; }
+                return `
+                  <div class="timeline-item ${cls}">
+                    <div class="timeline-dot">${mark}</div>
+                    <h4>${String(i+1).padStart(2,'0')} ${s.name}</h4>
+                    <p>${s.desc}</p>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  else if (currentProjectTab === 'stages') {
+    body.innerHTML = `
+      <div class="stages-list">
+        ${p.stages.map((s, i) => {
+          let cls = '';
+          let status = '○';
+          if (i < p.currentStage) { cls = 'done'; status = '✓'; }
+          else if (i === p.currentStage) { cls = 'current'; status = '→'; }
+          return `
+            <div class="stage-item ${cls}" onclick="openStage(${i})">
+              <div class="stage-num">${String(i+1).padStart(2,'0')}</div>
+              <div class="stage-info">
+                <h4>${s.name}</h4>
+                <p>${s.desc}</p>
+              </div>
+              <div class="stage-status">${status}</div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;
+  }
+
+  else if (currentProjectTab === 'materials') {
+    body.innerHTML = `
+      <div class="panel">
+        <div class="panel-title">📎 Материалы проекта</div>
+        ${p.materials.length ? `
+          <div class="material-list">
+            ${p.materials.map(m => `
+              <div class="material-row">
+                <div class="material-icon">${m.icon}</div>
+                <div class="material-info"><div class="name">${m.name}</div><div class="meta">${m.meta}</div></div>
+              </div>
+            `).join('')}
+          </div>
+        ` : '<div class="empty"><div class="empty-icon">📎</div>Пока нет материалов</div>'}
+        <div class="upload-zone" style="margin-top:16px;" onclick="toast('Загрузка материала (демо)')">
+          <div class="upload-icon">⬆</div>
+          <div class="upload-text">Загрузить материал</div>
+          <div class="upload-hint">Перетащите файл сюда или нажмите</div>
+        </div>
+      </div>
+    `;
+  }
+
+  else if (currentProjectTab === 'references') {
+    body.innerHTML = p.references.length ? `
+      <div class="ref-grid">
+        ${p.references.map(r => `
+          <div class="ref-card">
+            <div class="ref-img cover-1">${r.icon}</div>
+            <div class="ref-body">
+              <h4>${r.title}</h4>
+              <p style="margin-bottom:6px;color:var(--text-dim);font-size:11.5px;">${r.source}</p>
+              <p>${r.comment}</p>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+      <button class="btn btn-secondary" style="margin-top:20px;" onclick="toast('Добавление референса (демо)')">+ Добавить референс</button>
+    ` : '<div class="panel"><div class="empty"><div class="empty-icon">🖼</div>Пока нет референсов</div></div>';
+  }
+
+  else if (currentProjectTab === 'feedback') {
+    body.innerHTML = `
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel-title">💬 Обратная связь по проекту</div>
+          <div class="chat" id="chat-list">
+            ${p.feedback.length ? p.feedback.map(f => `
+              <div class="msg ${f.role === 'student' ? 'me' : ''}">
+                <div class="msg-avatar ${f.role}">${f.initials}</div>
+                <div>
+                  <div class="msg-meta">${f.author} · ${f.time}</div>
+                  <div class="msg-bubble">${f.text}</div>
+                </div>
+              </div>
+            `).join('') : '<div class="empty"><div class="empty-icon">💬</div>Пока нет комментариев</div>'}
+          </div>
+          <div class="chat-input">
+            <input id="fb-input" placeholder="Напишите комментарий..." onkeydown="if(event.key==='Enter')sendFeedback()">
+            <button class="btn btn-primary" onclick="sendFeedback()">Отправить</button>
+          </div>
+        </div>
+        <div>
+          <div class="panel">
+            <div class="panel-title">🟠 Комментарии к этапам</div>
+            <div class="alert alert-warning">
+              <span class="alert-icon">⚠</span>
+              <div><b>Этап «${p.stages[Math.min(p.currentStage, p.stages.length-1)].name}»</b><br>Требуется доработка: не хватает сценария для мобильной версии.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  else if (currentProjectTab === 'evaluation') {
+    const ev = p.evaluation;
+    if (!ev) {
+      body.innerHTML = '<div class="panel"><div class="empty"><div class="empty-icon">📊</div>Оценивание появится после защиты проекта</div></div>';
+    } else {
+      const totalScores = ev.criteria.reduce((s, c) => s + c.score, 0);
+      const maxScores = ev.criteria.reduce((s, c) => s + c.max, 0);
+      body.innerHTML = `
+        <div class="panel">
+          <div class="panel-title">📊 Оценивание проекта</div>
+          <table class="eval-table">
+            <thead><tr><th>Критерий</th><th style="width:200px;">Оценка</th></tr></thead>
+            <tbody>
+              ${ev.criteria.map(c => `
+                <tr>
+                  <td>${c.name}</td>
+                  <td>
+                    <div class="score-bar"><div class="score-bar-fill" style="width:${(c.score/c.max)*100}%"></div></div>
+                    <span class="score">${c.score}/${c.max}</span>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+          <div class="eval-total">
+            <div class="eval-total-label">Итоговый результат</div>
+            <div class="eval-total-value">${totalScores} / ${maxScores}</div>
+          </div>
+          <div class="alert alert-info" style="margin-top:20px;">
+            <span class="alert-icon">💬</span>
+            <div>${ev.comment}</div>
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  else if (currentProjectTab === 'portfolio') {
+    body.innerHTML = `
+      <div class="panel">
+        <div class="panel-title">🎨 Страница проекта в портфолио</div>
+        <p style="font-size:14px;color:var(--text-dim);margin-bottom:18px;line-height:1.6;">
+          После завершения проекта здесь будет публичная презентационная страница с описанием, исследованием, концепцией, визуальным дизайном и результатом.
+        </p>
+        <button class="btn btn-primary" onclick="nav('portfolio')">Открыть портфолио →</button>
+      </div>
+    `;
+  }
+}
+
+function openStage(index) {
+  const p = projects.find(x => x.id === currentProjectId);
+  if (!p) return;
+  const s = p.stages[index];
+  if (!s) return;
+
+  const isDone = index < p.currentStage;
+  const isCurrent = index === p.currentStage;
+
+  const body = document.getElementById('project-tab-body');
+  body.innerHTML = `
+    <div class="stage-detail-header">
+      <div class="stage-badge">Этап ${index+1} из ${p.stages.length} ${isDone ? '· ✓ Завершено' : isCurrent ? '· В работе' : '· Не начато'}</div>
+      <h1>${s.name}</h1>
+      <p>${s.goal}</p>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="panel">
+          <div class="panel-title">Что необходимо сделать</div>
+          <ul class="task-list">
+            ${s.tasks.map(t => `
+              <li onclick="this.classList.toggle('done')">
+                <div class="task-check">✓</div>
+                <span>${t}</span>
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Результат этапа</div>
+          <textarea placeholder="Что было сделано?" style="width:100%;min-height:100px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px;font-family:inherit;font-size:14px;color:var(--text);outline:none;resize:vertical;"></textarea>
+          <div class="upload-zone" style="margin-top:14px;" onclick="toast('Загрузка файла (демо)')">
+            <div class="upload-icon">⬆</div>
+            <div class="upload-text">Загрузить изображения, PDF, ссылку на Figma</div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
+            <button class="btn btn-secondary" onclick="toast('Сохранено')">Сохранить</button>
+            ${isCurrent ? `<button class="btn btn-primary" onclick="submitStage()">Отправить на проверку</button>` : ''}
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel">
+          <div class="panel-title">💡 Рекомендации</div>
+          <div class="tip-grid">
+            <div class="tip"><div class="tip-title">Начните с малого</div>Сначала набросайте идеи на бумаге, потом переходите в редактор.</div>
+            <div class="tip"><div class="tip-title">Изучите аналоги</div>Посмотрите, как похожие задачи решали другие.</div>
+            <div class="tip"><div class="tip-title">Не бойтесь черновиков</div>Сделайте 2–3 варианта и сравните.</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">📚 Материалы</div>
+          <div class="material-list">
+            <div class="material-row"><div class="material-icon">📄</div><div class="material-info"><div class="name">Методичка по этапу</div><div class="meta">PDF · 1.1 MB</div></div></div>
+            <div class="material-row"><div class="material-icon">🎥</div><div class="material-info"><div class="name">Видео-разбор</div><div class="meta">12 мин</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;">
+      <button class="btn btn-ghost" onclick="switchProjectTab('stages', document.querySelector('.inner-tab[data-ptab=stages]'))">← К списку этапов</button>
+    </div>
+  `;
+}
+
+function submitStage() {
+  const p = projects.find(x => x.id === currentProjectId);
+  if (!p) return;
+  if (p.currentStage < p.stages.length) {
+    p.currentStage++;
+    p.status = 'review';
+    toast('Этап отправлен на проверку ✓');
+    openProject(p.id);
+    switchProjectTab('stages', document.querySelector('.inner-tab[data-ptab=stages]'));
+  }
+}
+
+function sendFeedback() {
+  const input = document.getElementById('fb-input');
+  if (!input) return;
+  const text = input.value.trim();
+  if (!text) return;
+  const p = projects.find(x => x.id === currentProjectId);
+  if (!p) return;
+  p.feedback.push({
+    author: currentUser.name,
+    initials: currentUser.initials,
+    role: currentUser.role,
+    text: text,
+    time: 'только что'
+  });
+  input.value = '';
+  renderProjectTab();
+  toast('Комментарий отправлен');
+}
+
+/* ============================================================
+   СОЗДАНИЕ ПРОЕКТА
+   ============================================================ */
+document.addEventListener('click', (e) => {
+  const chip = e.target.closest('#np-types .chip');
+  if (chip) {
+    document.querySelectorAll('#np-types .chip').forEach(c => c.classList.remove('selected'));
+    chip.classList.add('selected');
+    selectedType = {
+      type: chip.dataset.type,
+      icon: chip.dataset.icon,
+      cover: chip.dataset.cover
+    };
+  }
+});
+
+function createProject() {
+  const title = document.getElementById('np-title').value.trim();
+  const desc = document.getElementById('np-desc').value.trim();
+  const goal = document.getElementById('np-goal').value.trim();
+  const audience = document.getElementById('np-audience').value.trim();
+  const deadline = document.getElementById('np-deadline').value;
+
+  if (!title) { toast('Введите название проекта'); return; }
+  if (!selectedType) { toast('Выберите тип проекта'); return; }
+
+  const newProject = {
+    id: Date.now(),
+    title: title,
+    type: selectedType.type,
+    icon: selectedType.icon,
+    cover: selectedType.cover,
+    deadline: deadline
+      ? new Date(deadline).toLocaleDateString('ru-RU', { day:'numeric', month:'long' })
+      : 'без дедлайна',
+    status: 'progress',
+    currentStage: 0,
+    goal: goal || desc || 'Описание проекта не заполнено.',
+    audience: audience || 'Не указана',
+    tools: 'Figma',
+    stages: JSON.parse(JSON.stringify(defaultStages)),
+    materials: [],
+    references: [],
+    feedback: [],
+    evaluation: null
+  };
+
+  projects.unshift(newProject);
+  toast('Проект создан ✓');
+
+  // очистка
+  document.getElementById('np-title').value = '';
+  document.getElementById('np-desc').value = '';
+  document.getElementById('np-goal').value = '';
+  document.getElementById('np-audience').value = '';
+  document.getElementById('np-deadline').value = '';
+  document.querySelectorAll('#np-types .chip').forEach(c => c.classList.remove('selected'));
+  selectedType = null;
+
+  renderProjects();
+  openProject(newProject.id);
+}
+
+/* ============================================================
+   TEACHER: DASHBOARD
+   ============================================================ */
+function renderTeacherDashboard() {
+  const review = projects.filter(p => p.status === 'review');
+  const list = review.length ? review : projects.slice(0, 2);
+  document.getElementById('teacher-review-cards').innerHTML = list.map(p => `
+    <div class="card" onclick="openTeacherReview(${p.id})">
+      <div class="card-cover ${p.cover}">${p.icon}</div>
+      <div class="card-body">
+        <div class="card-title">${p.title}</div>
+        <div class="card-sub">Студент: ${p.id === 4 ? 'Анна Петрова' : 'Иван Иванов'}</div>
+        <div class="card-footer">
+          <span class="badge badge-review">Ожидает проверки</span>
+          <span class="card-stage">${p.stages[Math.min(p.currentStage, p.stages.length-1)].name}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderTeacherProjects() {
+  document.getElementById('teacher-projects-cards').innerHTML = projects.map(p => `
+    <div class="card" onclick="openTeacherReview(${p.id})">
+      <div class="card-cover ${p.cover}">${p.icon}</div>
+      <div class="card-body">
+        <div class="card-title">${p.title}</div>
+        <div class="card-sub">Студент: Иван Иванов · ${p.type}</div>
+        <div class="card-progress"><div class="card-progress-fill" style="width:${Math.round((p.currentStage/p.stages.length)*100)}%"></div></div>
+        <div class="card-footer">
+          <span class="badge badge-${p.status === 'review' ? 'review' : p.status === 'done' ? 'done' : 'progress'}">${p.status === 'review' ? 'На проверке' : p.status === 'done' ? 'Завершён' : 'В работе'}</span>
+          <span class="card-stage">${Math.round((p.currentStage/p.stages.length)*100)}%</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openTeacherReview(id) {
+  currentProjectId = id;
+  nav('teacher-review');
+  renderTeacherReview();
+}
+
+function renderTeacherReview() {
+  const criteria = [
+    { name:'Исследование', score:4 },
+    { name:'Концепция', score:4 },
+    { name:'Композиция', score:5 },
+    { name:'Типографика', score:4 },
+    { name:'UX/UI', score:4 },
+    { name:'Визуальная часть', score:5 },
+    { name:'Презентация', score:5 }
+  ];
+  const el = document.getElementById('review-scores');
+  if (!el) return;
+  el.innerHTML = criteria.map((c, i) => `
+    <div class="score-row">
+      <label>${c.name}</label>
+      <input class="score-input" type="number" min="0" max="5" value="${c.score}" data-idx="${i}">
+      <span style="color:var(--text-dim);font-size:12.5px;">/ 5</span>
+    </div>
+  `).join('');
+}
+
+function selectStatus(el) {
+  document.querySelectorAll('.status-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+/* ============================================================
+   TEACHER: CREATE TASK
+   ============================================================ */
+function createTask() {
+  const title = document.getElementById('nt-title').value.trim();
+  if (!title) { toast('Введите название задания'); return; }
+
+  document.getElementById('nt-title').value = '';
+  document.getElementById('nt-desc').value = '';
+  document.getElementById('nt-goal').value = '';
+  document.getElementById('nt-criteria').value = '';
+  document.getElementById('nt-materials').value = '';
+  document.getElementById('nt-deadline').value = '';
+
+  toast('Задание опубликовано ✓');
+  nav('teacher-tasks');
+}
+
+/* ============================================================
+   МАТЕРИАЛЫ (библиотека)
+   ============================================================ */
+const libraryData = [
+  { cat:'Основы дизайна', items:[
+    { icon:'📄', name:'Введение в дизайн-проектирование', type:'PDF' },
+    { icon:'🎥', name:'Видеокурс: базовые принципы', type:'Видео' }
+  ]},
+  { cat:'Веб-дизайн', items:[
+    { icon:'📄', name:'Основы веб-дизайна', type:'PDF' },
+    { icon:'🔗', name:'Гайд по сеткам и адаптиву', type:'Ссылка' }
+  ]},
+  { cat:'UI/UX', items:[
+    { icon:'📄', name:'Проектирование пользовательских сценариев', type:'PDF' },
+    { icon:'🎥', name:'UX-исследования: методы', type:'Видео' }
+  ]},
+  { cat:'Типографика', items:[
+    { icon:'📄', name:'Шрифтовые пары: практическое руководство', type:'PDF' }
+  ]},
+  { cat:'Композиция', items:[
+    { icon:'📄', name:'Композиция в графическом дизайне', type:'PDF' }
+  ]},
+  { cat:'Цвет', items:[
+    { icon:'📄', name:'Цветовые схемы и контраст', type:'PDF' }
+  ]},
+  { cat:'Исследования', items:[
+    { icon:'📄', name:'Как проводить исследование', type:'PDF' },
+    { icon:'📄', name:'Анализ конкурентов: шаблон', type:'PDF' }
+  ]},
+  { cat:'Прототипирование', items:[
+    { icon:'🎥', name:'Wireframes: с чего начать', type:'Видео' }
+  ]},
+  { cat:'Презентация проекта', items:[
+    { icon:'📄', name:'Как защитить дизайн-проект', type:'PDF' }
+  ]}
+];
+
+function renderMaterialsLibrary() {
+  const el = document.getElementById('materials-library');
+  if (!el) return;
+  el.innerHTML = libraryData.map(g => `
+    <div class="panel">
+      <div class="panel-title">📚 ${g.cat}</div>
+      <div class="material-list">
+        ${g.items.map(it => `
+          <div class="material-row" onclick="toast('Открытие материала (демо)')">
+            <div class="material-icon">${it.icon}</div>
+            <div class="material-info">
+              <div class="name">${it.name}</div>
+              <div class="meta">${it.type}</div>
+            </div>
+            <button class="btn btn-secondary btn-sm">Открыть</button>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ============================================================
+   ТЕМА
+   ============================================================ */
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+  toast(document.body.classList.contains('dark') ? 'Тёмная тема' : 'Светлая тема');
+}
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+let toastTimer = null;
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+/* ============================================================
+   СТАРТ
+   ============================================================ */
+// ничего не делаем — ждём вход
+</script>
+</body>
+</html>
